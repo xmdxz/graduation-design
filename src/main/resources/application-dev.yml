@@ -23,7 +23,7 @@ spring:
         max-active: 50
         # #连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1ms
-    password: yx668234..
+#    password: yx668234..
   security:
     debug: false
     white: /*.html,/swagger-ui/**,/doc.html,/swagger-resources/**,/v2/**,/v3/**,/webjars/**,/swagger-ui/index.html,/login/**,/no/**
