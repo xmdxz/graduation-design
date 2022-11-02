@@ -1,0 +1,11 @@
+[32m2022-09-13 10:42:11.015[m [32mINFO [m [32m[main][m [32mc.x.f.FileSystemApplication.logStarting(55)[m[32m:[m Starting FileSystemApplication using Java 1.8.0_241 on DESKTOP-2SEACQL with PID 25012 (D:\desktop\project\own\file-system\target\classes started by 10598 in D:\desktop\project\own\meng-xin\server)
+[32m2022-09-13 10:42:11.043[m [32mINFO [m [32m[main][m [32mc.x.f.FileSystemApplication.logStartupProfileInfo(680)[m[32m:[m No active profile set, falling back to 1 default profile: "default"
+[32m2022-09-13 10:42:11.558[m [32mINFO [m [32m[main][m [32mo.s.b.w.e.t.TomcatWebServer.initialize(108)[m[32m:[m Tomcat initialized with port(s): 8080 (http)
+[32m2022-09-13 10:42:11.568[m [32mINFO [m [32m[main][m [32mo.a.c.h.Http11NioProtocol.log(173)[m[32m:[m Initializing ProtocolHandler ["http-nio-8080"]
+[32m2022-09-13 10:42:11.568[m [32mINFO [m [32m[main][m [32mo.a.c.c.StandardService.log(173)[m[32m:[m Starting service [Tomcat]
+[32m2022-09-13 10:42:11.569[m [32mINFO [m [32m[main][m [32mo.a.c.c.StandardEngine.log(173)[m[32m:[m Starting Servlet engine: [Apache Tomcat/9.0.63]
+[32m2022-09-13 10:42:11.645[m [32mINFO [m [32m[main][m [32mo.a.c.c.C.[.[.[/].log(173)[m[32m:[m Initializing Spring embedded WebApplicationContext
+[32m2022-09-13 10:42:11.646[m [32mINFO [m [32m[main][m [32mo.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext(290)[m[32m:[m Root WebApplicationContext: initialization completed in 576 ms
+[32m2022-09-13 10:42:11.903[m [32mINFO [m [32m[main][m [32mo.a.c.h.Http11NioProtocol.log(173)[m[32m:[m Starting ProtocolHandler ["http-nio-8080"]
+[32m2022-09-13 10:42:11.915[m [32mINFO [m [32m[main][m [32mo.s.b.w.e.t.TomcatWebServer.start(220)[m[32m:[m Tomcat started on port(s): 8080 (http) with context path ''
+[32m2022-09-13 10:42:11.921[m [32mINFO [m [32m[main][m [32mc.x.f.FileSystemApplication.logStarted(61)[m[32m:[m Started FileSystemApplication in 1.207 seconds (JVM running for 2.162)

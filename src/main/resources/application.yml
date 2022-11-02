@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /
+  port: 10086
+  shutdown: GRACEFUL
+
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: graduation-design
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
