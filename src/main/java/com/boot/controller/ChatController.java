@@ -5,7 +5,6 @@ import com.boot.common.response.ResponseUtil;
 import com.boot.dal.dao.Chat;
 import com.boot.service.ChatService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
