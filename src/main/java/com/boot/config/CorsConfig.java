@@ -1,4 +1,4 @@
-package com.boot.security.config;
+package com.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

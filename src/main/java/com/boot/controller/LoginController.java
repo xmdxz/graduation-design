@@ -3,7 +3,7 @@ package com.boot.controller;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
 import com.boot.dto.common.ro.PhoneLoginRo;
-import com.boot.dto.common.vo.LoginVo;
+import com.boot.dto.ro.PhoneRegistryRo;
 import com.boot.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,9 +34,15 @@ public class LoginController {
 
     @PostMapping(value = "/phone")
     @ApiOperation("登录")
-    public Response<LoginVo> phone(@Validated PhoneLoginRo ro) {
+    public Response<String> phone(@Validated PhoneLoginRo ro) {
         return ResponseUtil.success(loginService.phone(ro));
     }
 
+
+    @PostMapping(value = "/registry")
+    @ApiOperation("注册")
+    public Response<Boolean> registry(@Validated PhoneRegistryRo ro) {
+        return ResponseUtil.success(loginService.registry(ro));
+    }
 
 }

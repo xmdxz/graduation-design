@@ -1,7 +1,7 @@
 package com.boot.service;
 
 import com.boot.dto.common.ro.PhoneLoginRo;
-import com.boot.dto.common.vo.LoginVo;
+import com.boot.dto.ro.PhoneRegistryRo;
 
 /**
  * @Author YuanXin
@@ -19,6 +19,13 @@ public interface LoginService {
      * @return
      */
 
-    LoginVo phone(PhoneLoginRo ro);
-    
+    String phone(PhoneLoginRo ro);
+
+    /**
+     * 注册
+     *
+     * @param ro
+     * @return
+     */
+    Boolean registry(PhoneRegistryRo ro);
 }

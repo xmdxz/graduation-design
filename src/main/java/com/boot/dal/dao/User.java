@@ -2,9 +2,7 @@ package com.boot.dal.dao;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.boot.common.dao.BaseTimeDeleteEntity;
-import com.boot.common.dao.UploadFile;
 import com.boot.common.enums.EndpointEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -59,15 +57,7 @@ public class User extends BaseTimeDeleteEntity {
      */
     @ApiModelProperty(value = "头像")
     @Schema(description = "头像")
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private UploadFile avatar;
-
-    /**
-     * 微信openid
-     */
-    @ApiModelProperty(value = "微信openid")
-    @Schema(description = "微信openid")
-    private String wxOpenId;
+    private String avatar;
 
     /**
      * 性别
@@ -76,15 +66,7 @@ public class User extends BaseTimeDeleteEntity {
     @Schema(description = "性别")
     private String sex;
 
-    /**
-     * 情侣
-     */
-    @ApiModelProperty(value = "情侣")
-    @Schema(description = "情侣")
-    private String loveId;
-    
 
-    @ApiModelProperty("微信公众平台openid")
-    private String wxPublicOpenId;
-
+    @ApiModelProperty(value = "个人简介")
+    private String mark;
 }

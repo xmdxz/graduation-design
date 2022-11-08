@@ -37,12 +37,6 @@ public class GlobalExceptionHandler {
         ResponseUtil.outputResponse(response, ResponseUtil.error(ResultCode.FAILURE, message));
     }
 
-    @ExceptionHandler({NeedPusherException.class})
-    public void pusherException(NeedPusherException exception) {
-        String message = exception.getMessage();
-        log.error("发生需要推送的异常:" + message);
-    }
-
 
     /**
      * 参数校验异常

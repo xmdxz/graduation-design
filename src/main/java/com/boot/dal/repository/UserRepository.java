@@ -18,8 +18,4 @@ public class UserRepository extends ServiceImpl<UserMapper, User> {
     public User getByPhone(String phone) {
         return getOne(Wrappers.<User>lambdaQuery().eq(User::getPhone, phone));
     }
-
-    public User getByOpenId(String openId) {
-        return getOne(Wrappers.<User>lambdaQuery().eq(User::getWxOpenId, openId));
-    }
 }

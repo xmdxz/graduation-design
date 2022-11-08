@@ -1,6 +1,5 @@
 package com.boot.dto.common.vo;
 
-import com.boot.common.dao.UploadFile;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -23,5 +22,5 @@ public class UserBasicInformation {
     private String username;
 
     @ApiModelProperty("头像")
-    private UploadFile avatar;
+    private String avatar;
 }
