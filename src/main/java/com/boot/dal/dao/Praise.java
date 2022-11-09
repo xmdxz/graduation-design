@@ -8,14 +8,20 @@ import lombok.Data;
 
 /**
  * @Author YuanXin
- * @ClassName Comment
+ * @ClassName Praise
  * @Description TODO
  * @Date 2022/11/9 11:25
  */
-@ApiModel(value = "`comment`")
+@ApiModel(value = "praise")
 @Data
-@TableName(value = "`comment`")
-public class Comment extends BaseTimeDeleteEntity {
+@TableName(value = "`praise`")
+public class Praise extends BaseTimeDeleteEntity {
+
+    /**
+     * 用户id
+     */
+    @ApiModelProperty(value = "用户id")
+    private String userId;
 
     /**
      * 业务id
@@ -24,20 +30,8 @@ public class Comment extends BaseTimeDeleteEntity {
     private String otherId;
 
     /**
-     * 评论类型(商品，帖子)
+     * 点赞类型
      */
-    @ApiModelProperty(value = "评论类型(商品，帖子)")
+    @ApiModelProperty(value = "点赞类型")
     private String type;
-
-    /**
-     * 评论内容
-     */
-    @ApiModelProperty(value = "评论内容")
-    private String content;
-
-    /**
-     * 父id
-     */
-    @ApiModelProperty(value = "父id")
-    private String pid;
 }
