@@ -1,12 +1,8 @@
-package com.boot.dal.dao;
+package com.boot.dto.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
-import com.boot.common.dao.BaseTimeDeleteEntity;
-import com.boot.common.enums.GoodsStatus;
 import com.boot.dto.common.vo.UserBasicInformation;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -15,17 +11,24 @@ import java.util.List;
 
 /**
  * @Author YuanXin
- * @ClassName Goods
+ * @ClassName CollectPageVo
  * @Description TODO
- * @Date 2022/11/9 11:25
+ * @Date 2022/11/9 16:34
  */
-@ApiModel(value = "goods")
+
 @Data
-@TableName(value = "`goods`")
-public class Goods extends BaseTimeDeleteEntity {
+public class CollectPageVo {
+
+    @ApiModelProperty("用户基本信息")
+    private UserBasicInformation userInfo;
+
+
     /**
-     * 商品名称
+     * 商品id
      */
+    @ApiModelProperty(value = "商品id")
+    private String goodsId;
+
     @ApiModelProperty(value = "商品名称")
     private String name;
 
@@ -42,25 +45,12 @@ public class Goods extends BaseTimeDeleteEntity {
     @ApiModelProperty(value = "商品描述")
     private String content;
 
-    /**
-     * 用户id
-     */
-    @ApiModelProperty(value = "用户id")
-    private String userId;
 
     /**
      * 价格
      */
     @ApiModelProperty(value = "价格")
     private BigDecimal price;
+    
 
-    /**
-     * 状态
-     */
-    @ApiModelProperty(value = "状态")
-    private GoodsStatus status;
-
-    @ApiModelProperty("用户信息")
-    @TableField(exist = false)
-    private UserBasicInformation userInfo;
 }

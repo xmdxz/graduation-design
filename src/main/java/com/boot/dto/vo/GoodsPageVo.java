@@ -1,12 +1,7 @@
-package com.boot.dal.dao;
+package com.boot.dto.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
-import com.boot.common.dao.BaseTimeDeleteEntity;
 import com.boot.common.enums.GoodsStatus;
 import com.boot.dto.common.vo.UserBasicInformation;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -15,14 +10,21 @@ import java.util.List;
 
 /**
  * @Author YuanXin
- * @ClassName Goods
+ * @ClassName GoodsPageVo
  * @Description TODO
- * @Date 2022/11/9 11:25
+ * @Date 2022/11/9 17:16
  */
-@ApiModel(value = "goods")
+
+
 @Data
-@TableName(value = "`goods`")
-public class Goods extends BaseTimeDeleteEntity {
+public class GoodsPageVo {
+
+    @ApiModelProperty("id")
+    private String id;
+
+
+    @ApiModelProperty("用户基本信息")
+    private UserBasicInformation userInfo;
     /**
      * 商品名称
      */
@@ -33,7 +35,6 @@ public class Goods extends BaseTimeDeleteEntity {
      * 商品图片
      */
     @ApiModelProperty(value = "商品图片")
-    @TableField(typeHandler = JacksonTypeHandler.class)
     private List<String> images;
 
     /**
@@ -60,7 +61,5 @@ public class Goods extends BaseTimeDeleteEntity {
     @ApiModelProperty(value = "状态")
     private GoodsStatus status;
 
-    @ApiModelProperty("用户信息")
-    @TableField(exist = false)
-    private UserBasicInformation userInfo;
+
 }

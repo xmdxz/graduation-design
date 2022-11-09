@@ -18,4 +18,39 @@
     <!--@mbg.generated-->
     id, is_deleted, create_time, update_time, goods_id, `status`, amount, user_id, goods_user_id
   </sql>
+
+
+  <resultMap id="order" type="com.boot.dto.vo.OrderGoodsPageVo">
+    <result column="images" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler" property="images"/>
+    <association property="userInfo" javaType="com.boot.dto.common.vo.UserBasicInformation">
+      <id column="u_id" property="id"/>
+      <result column="username" property="username"/>
+      <result column="sex" property="sex"/>
+      <result column="avatar" property="avatar"/>
+    </association>
+  </resultMap>
+  <select id="pageOwn" resultMap="order">
+    select  u.id as u_id,u.username,u.avatar,u.sex,
+    g.name,
+    g.images,
+    g.content,
+    g.user_id,
+    g.price,
+    o.status,
+    o.amount,o.status as status from `order` as o left join goods g on o.goods_id = g.id
+    left join user u on
+    <if test="type == @com.boot.common.enums.FindType@SOLD">
+      o.goods_user_id = u.id
+    </if>
+    <if test="type == @com.boot.common.enums.FindType@BUY">
+      o.user_id = u.id
+    </if>
+    where o.is_deleted = 0
+    <if test="type == @com.boot.common.enums.FindType@SOLD">
+      and o.goods_user_id = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="type == @com.boot.common.enums.FindType@BUY">
+      and o.user_id = #{userId,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>
