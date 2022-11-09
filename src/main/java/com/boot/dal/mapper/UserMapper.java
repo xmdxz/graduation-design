@@ -2,7 +2,9 @@ package com.boot.dal.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.boot.dal.dao.User;
+import com.boot.dto.vo.UserDataVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @Author YuanXin
@@ -13,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
+    UserDataVo getData(@Param("userId") String userId);
 }

@@ -1,5 +1,8 @@
 package com.boot.service;
 
+import com.boot.dto.common.vo.UserBasicInformation;
+import com.boot.dto.vo.UserDataVo;
+
 /**
  * @Author YuanXin
  * @ClassName UserService
@@ -8,4 +11,7 @@ package com.boot.service;
  */
 public interface UserService {
 
+    UserBasicInformation getUserBasic(String userId);
+
+    UserDataVo data(String userId);
 }

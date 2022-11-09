@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.boot.dal.dao.User;
 import com.boot.dal.mapper.UserMapper;
+import com.boot.dto.vo.UserDataVo;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,5 +18,9 @@ import org.springframework.stereotype.Service;
 public class UserRepository extends ServiceImpl<UserMapper, User> {
     public User getByPhone(String phone) {
         return getOne(Wrappers.<User>lambdaQuery().eq(User::getPhone, phone));
+    }
+
+    public UserDataVo getData(String userId) {
+        return baseMapper.getData(userId);
     }
 }

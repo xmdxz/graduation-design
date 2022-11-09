@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.dal.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.boot.dal.dao.Order">
+    <!--@mbg.generated-->
+    <!--@Table `order`-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="goods_user_id" jdbcType="VARCHAR" property="goodsUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, is_deleted, create_time, update_time, goods_id, `status`, amount, user_id, goods_user_id
+  </sql>
+</mapper>

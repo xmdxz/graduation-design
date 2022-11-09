@@ -1,5 +1,7 @@
 package com.boot.wrappers;
 
+import com.boot.dal.dao.User;
+import com.boot.dto.common.vo.UserBasicInformation;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
@@ -12,5 +14,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public abstract class UserWrapper {
+
+    public abstract UserBasicInformation toBasic(User user);
 
 }

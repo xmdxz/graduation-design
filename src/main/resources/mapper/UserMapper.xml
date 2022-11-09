@@ -20,4 +20,23 @@
     sex
   </sql>
 
+  <resultMap id="data" type="com.boot.dto.vo.UserDataVo">
+    <association property="userInfo" javaType="com.boot.dto.common.vo.UserBasicInformation">
+      <id column="id" property="id"/>
+      <result column="username" property="username"/>
+      <result column="avatar" property="avatar"/>
+      <result column="sex" property="sex"/>
+      <result column="mark" property="mark"/>
+    </association>
+  </resultMap>
+
+  <select id="getData" resultMap="data">
+    select id,username,avatar,sex,mark,
+      (select count(*) from collect where is_deleted = 0 and user_id = u.id) as collect,
+      (select count(*) from dynamic where is_deleted = 0 and user_id = u.id) as dynamic,
+      (select count(*) from goods where is_deleted = 0 and user_id = u.id) as publish,
+      (select count(*) from `order` where is_deleted = 0 and goods_user_id = u.id and status = 'FINISHED') as sold,
+           (select count(*) from `order` where is_deleted = 0 and user_id = u.id and status = 'FINISHED') as sold
+    from user as u where is_deleted = 0 and id = #{userId,jdbcType=VARCHAR}
+  </select>
 </mapper>
