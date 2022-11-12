@@ -18,7 +18,6 @@ import lombok.experimental.Accessors;
  */
 
 @ApiModel(value = "`chat`")
-@Schema
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,7 +29,6 @@ public class Chat extends BaseTimeDeleteEntity {
      * 用户ID
      */
     @ApiModelProperty(value = "用户id")
-    @Schema(description = "用户id")
     private String userId;
 
 
@@ -38,6 +36,5 @@ public class Chat extends BaseTimeDeleteEntity {
      * 聊天内容
      */
     @ApiModelProperty(value = "聊天内容")
-    @Schema(description = "聊天内容")
     private String content;
 }

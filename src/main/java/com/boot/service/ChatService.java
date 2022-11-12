@@ -10,7 +10,7 @@ import java.util.List;
  * @version 1.0
  * @date 2022/11/7 10:02
  */
-public interface ChatService extends IService<Chat> {
+public interface ChatService {
 
     /**
      * 获取聊天列表
@@ -18,7 +18,7 @@ public interface ChatService extends IService<Chat> {
      * @author Shubo_Yang
      * @date 2022/11/7 10:04
      */
-    public List<Chat> getChatList();
+    public List<Chat> getChatList(String userId);
 
     /**
      * 插入新的聊天
@@ -27,7 +27,7 @@ public interface ChatService extends IService<Chat> {
      * @author Shubo_Yang
      * @date 2022/11/7 10:13
      */
-    public int insertNewChat(Chat chat);
+    public Boolean insertNewChat(Chat chat);
 
     /**
      * 根据id删除聊天
@@ -37,5 +37,5 @@ public interface ChatService extends IService<Chat> {
      * @author Shubo_Yang
      * @date 2022/11/7 10:37
      */
-    public int deleteChat(String id);
+    public Boolean deleteChat(String id);
 }
