@@ -41,9 +41,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Boolean registry(PhoneRegistryRo ro) {
-        if (!CharSequenceUtil.equals(ro.getPassword(), ro.getSurePassword())) {
-            throw new ServiceException("两次密码输入不一致");
-        }
+//        if (!CharSequenceUtil.equals(ro.getPassword(), ro.getSurePassword())) {
+//            throw new ServiceException("两次密码输入不一致");
+//        }
         String phone = ro.getPhone();
         User user = userRepository.getByPhone(phone);
         if (ObjectUtil.isNotNull(user)) {

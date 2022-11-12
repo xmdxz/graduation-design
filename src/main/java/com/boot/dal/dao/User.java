@@ -64,7 +64,7 @@ public class User extends BaseTimeDeleteEntity {
      */
     @ApiModelProperty(value = "性别")
     @Schema(description = "性别")
-    private String sex;
+    private Integer sex;
 
 
     @ApiModelProperty(value = "个人简介")

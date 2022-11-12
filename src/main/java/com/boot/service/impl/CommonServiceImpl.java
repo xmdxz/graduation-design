@@ -4,6 +4,8 @@ import cn.hutool.core.text.CharSequenceUtil;
 import com.boot.common.exception.ServiceException;
 import com.boot.service.CommonService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,18 +21,10 @@ import java.io.IOException;
  */
 @Service
 @Log4j2
-public class CommonServiceImpl implements CommonService {
+public class CommonServiceImpl implements CommonService, ApplicationRunner {
 
     private static final String CLASS_PATH_STATIC = "/images";
     private static String CLASS_PATH_IMAGES_PATH;
-
-    static {
-        try {
-            CLASS_PATH_IMAGES_PATH = new ClassPathResource("static" + CLASS_PATH_STATIC).getFile().getAbsolutePath();
-        } catch (IOException e) {
-            log.error(e);
-        }
-    }
 
     @Override
     public String upload(MultipartFile file) {
@@ -47,5 +41,14 @@ public class CommonServiceImpl implements CommonService {
             throw new ServiceException("文件上传失败");
         }
         return CLASS_PATH_STATIC + targetFileName;
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        try {
+            CLASS_PATH_IMAGES_PATH = new ClassPathResource("static" + CLASS_PATH_STATIC).getFile().getAbsolutePath();
+        } catch (IOException e) {
+            log.error(e);
+        }
     }
 }

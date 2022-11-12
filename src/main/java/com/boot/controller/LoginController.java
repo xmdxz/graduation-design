@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,14 +35,14 @@ public class LoginController {
 
     @PostMapping(value = "/phone")
     @ApiOperation("登录")
-    public Response<String> phone(@Validated PhoneLoginRo ro) {
+    public Response<String> phone(@Validated @RequestBody PhoneLoginRo ro) {
         return ResponseUtil.success(loginService.phone(ro));
     }
 
 
     @PostMapping(value = "/registry")
     @ApiOperation("注册")
-    public Response<Boolean> registry(@Validated PhoneRegistryRo ro) {
+    public Response<Boolean> registry(@Validated @RequestBody PhoneRegistryRo ro) {
         return ResponseUtil.success(loginService.registry(ro));
     }
 

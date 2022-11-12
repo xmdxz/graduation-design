@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @Author YuanXin
  * @ClassName UserBasicInformation
@@ -20,6 +22,7 @@ public class UserBasicInformation {
     private String id;
 
     @ApiModelProperty("用户名")
+    @NotBlank(message = "昵称不能为空")
     private String username;
 
     @ApiModelProperty("头像")
@@ -30,7 +33,7 @@ public class UserBasicInformation {
      */
     @ApiModelProperty(value = "性别")
     @Schema(description = "性别")
-    private String sex;
+    private Integer sex;
 
 
     @ApiModelProperty(value = "个人简介")

@@ -24,8 +24,8 @@ public class PhoneRegistryRo {
     @NotBlank(message = "密码不能为空")
     private String password;
 
-    @NotBlank(message = "请输入密码")
-    @ApiModelProperty("确认密码")
-    private String surePassword;
+//    @NotBlank(message = "请输入密码")
+//    @ApiModelProperty("确认密码")
+//    private String surePassword;
 
 }

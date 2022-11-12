@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3306/xmdxz?useUnicode=true&characterEncoding=utf-8&useSSL=false&nullCatalogMeansCurrent=true
+    url: jdbc:mysql://127.0.0.1:3306/xianyu?useUnicode=true&characterEncoding=utf-8&useSSL=false&nullCatalogMeansCurrent=true
 #mybatis-plus 设置
 mybatis-plus:
   global-config:
@@ -49,4 +49,4 @@ scheduled:
 logging:
   config: classpath:config/log4j2.xml
   level:
-    com.boot: warn
+    com.boot: debug

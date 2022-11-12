@@ -1,5 +1,6 @@
 package com.boot.dal.dao;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.boot.common.dao.BaseTimeDeleteEntity;
 import com.boot.common.enums.OrderStatus;
 import io.swagger.annotations.ApiModel;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
  */
 @ApiModel(value = "`order`")
 @Data
+@TableName(value = "`order`")
 public class Order extends BaseTimeDeleteEntity {
     /**
      * 商品id

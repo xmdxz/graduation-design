@@ -21,6 +21,12 @@
 
 
   <resultMap id="order" type="com.boot.dto.vo.OrderGoodsPageVo">
+    <id column="id" property="id"/>
+    <result column="amount" property="amount"/>
+    <result column="price" property="price"/>
+    <result column="status" property="status"/>
+    <result column="content" property="content"/>
+    <result column="name" property="name"/>
     <result column="images" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler" property="images"/>
     <association property="userInfo" javaType="com.boot.dto.common.vo.UserBasicInformation">
       <id column="u_id" property="id"/>
@@ -37,7 +43,7 @@
     g.user_id,
     g.price,
     o.status,
-    o.amount,o.status as status from `order` as o left join goods g on o.goods_id = g.id
+    o.amount,o.status as status,o.id from `order` as o left join goods g on o.goods_id = g.id
     left join user u on
     <if test="type == @com.boot.common.enums.FindType@SOLD">
       o.goods_user_id = u.id

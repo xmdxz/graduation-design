@@ -1,22 +1,19 @@
 package com.boot.controller;
 
+import com.boot.common.enums.DeleteType;
 import com.boot.common.enums.FindType;
 import com.boot.common.request.page.PageQuery;
 import com.boot.common.request.page.PageResult;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
 import com.boot.dto.common.vo.UserBasicInformation;
-import com.boot.dto.vo.CollectPageVo;
-import com.boot.dto.vo.GoodsPageVo;
-import com.boot.dto.vo.OrderGoodsPageVo;
-import com.boot.dto.vo.UserDataVo;
+import com.boot.dto.vo.*;
 import com.boot.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author YuanXin
@@ -34,10 +31,17 @@ public class UserController {
     private final UserService userService;
 
 
-    @RequestMapping("/basicInfo")
+    @GetMapping("/basicInfo")
     @ApiOperation("获取用户个人基本信息")
     public Response<UserBasicInformation> getUserBasic(String userId) {
         return ResponseUtil.success(userService.getUserBasic(userId));
+    }
+
+
+    @PostMapping("/update")
+    @ApiOperation("更新用户基本信息")
+    public Response<Boolean> update(@RequestBody @Validated UserBasicInformation info) {
+        return ResponseUtil.success(userService.update(info));
     }
 
     @GetMapping("/data")
@@ -58,9 +62,21 @@ public class UserController {
         return ResponseUtil.success(userService.publishPage(PageQuery.getPage(page), userId));
     }
 
+    @GetMapping("/dynamic")
+    @ApiOperation("收藏的帖子")
+    public Response<PageResult<CollectDynamicPageVo>> dynamicPage(PageQuery page, String userId) {
+        return ResponseUtil.success(userService.dynamic(PageQuery.getPage(page), userId));
+    }
+
     @GetMapping("/order")
     @ApiOperation("我卖出的/我买入的")
     public Response<PageResult<OrderGoodsPageVo>> orderPage(PageQuery page, String userId, FindType type) {
         return ResponseUtil.success(userService.orderPage(PageQuery.getPage(page), userId, type));
+    }
+
+    @GetMapping("/delete")
+    @ApiOperation("删除")
+    public Response<Boolean> delete(String id, DeleteType type) {
+        return ResponseUtil.success(userService.delete(id, type));
     }
 }

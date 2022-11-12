@@ -21,6 +21,11 @@
   </sql>
 
   <resultMap id="data" type="com.boot.dto.vo.UserDataVo">
+    <result column="collect" property="collect"/>
+    <result column="dynamic" property="dynamic"/>
+    <result column="publish" property="publish"/>
+    <result column="sold" property="sold"/>
+    <result column="buy" property="buy"/>
     <association property="userInfo" javaType="com.boot.dto.common.vo.UserBasicInformation">
       <id column="id" property="id"/>
       <result column="username" property="username"/>
@@ -32,11 +37,11 @@
 
   <select id="getData" resultMap="data">
     select id,username,avatar,sex,mark,
-      (select count(*) from collect where is_deleted = 0 and user_id = u.id) as collect,
-      (select count(*) from dynamic where is_deleted = 0 and user_id = u.id) as dynamic,
-      (select count(*) from goods where is_deleted = 0 and user_id = u.id) as publish,
-      (select count(*) from `order` where is_deleted = 0 and goods_user_id = u.id and status = 'FINISHED') as sold,
-           (select count(*) from `order` where is_deleted = 0 and user_id = u.id and status = 'FINISHED') as sold
+      ifnull((select count(*) from collect where is_deleted = 0 and user_id = u.id),0) as collect,
+      ifnull((select count(*) from dynamic where is_deleted = 0 and user_id = u.id),0) as dynamic,
+      ifnull((select count(*) from goods where is_deleted = 0 and user_id = u.id),0) as publish,
+      ifnull((select count(*) from `order` where is_deleted = 0 and goods_user_id = u.id and status = 'FINISHED'),0) as sold,
+           ifnull((select count(*) from `order` where is_deleted = 0 and user_id = u.id and status = 'FINISHED'),0) as buy
     from user as u where is_deleted = 0 and id = #{userId,jdbcType=VARCHAR}
   </select>
 </mapper>
