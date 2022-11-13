@@ -51,6 +51,9 @@ public class CollectPageVo {
      */
     @ApiModelProperty(value = "价格")
     private BigDecimal price;
-    
+
+    @ApiModelProperty("id")
+    private String id;
+
 
 }

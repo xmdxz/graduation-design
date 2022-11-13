@@ -1,8 +1,18 @@
 package com.boot.service.impl;
 
 import cn.hutool.core.text.CharSequenceUtil;
+import com.boot.common.enums.Type;
 import com.boot.common.exception.ServiceException;
+import com.boot.dal.dao.Comment;
+import com.boot.dal.dao.PublishPrice;
+import com.boot.dal.repository.CommentRepository;
+import com.boot.dal.repository.PublishPriceRepository;
+import com.boot.dto.vo.CommentVo;
+import com.boot.dto.vo.PublishPriceVo;
 import com.boot.service.CommonService;
+import com.boot.wrappers.CommentWrapper;
+import com.boot.wrappers.PublishPriceWrapper;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -12,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @Author YuanXin
@@ -21,10 +32,16 @@ import java.io.IOException;
  */
 @Service
 @Log4j2
+@AllArgsConstructor
 public class CommonServiceImpl implements CommonService, ApplicationRunner {
 
     private static final String CLASS_PATH_STATIC = "/images";
     private static String CLASS_PATH_IMAGES_PATH;
+    private final CommentRepository commentRepository;
+
+    private final CommentWrapper commentWrapper;
+    private final PublishPriceRepository publishPriceRepository;
+    private final PublishPriceWrapper publishPriceWrapper;
 
     @Override
     public String upload(MultipartFile file) {
@@ -41,6 +58,19 @@ public class CommonServiceImpl implements CommonService, ApplicationRunner {
             throw new ServiceException("文件上传失败");
         }
         return CLASS_PATH_STATIC + targetFileName;
+    }
+
+    @Override
+    public List<CommentVo> comment(String id, Type type) {
+        List<Comment> comments = commentRepository.listById(id, Type.GOODS);
+        List<CommentVo> commentVos = commentWrapper.toCommentListVo(comments);
+        return commentVos;
+    }
+
+    @Override
+    public List<PublishPriceVo> publishPrice(String id) {
+        List<PublishPrice> publishPrices = publishPriceRepository.listById(id);
+        return publishPriceWrapper.toVo(publishPrices);
     }
 
     @Override

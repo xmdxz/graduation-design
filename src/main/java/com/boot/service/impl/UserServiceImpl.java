@@ -1,14 +1,16 @@
 package com.boot.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.boot.common.enums.DeleteType;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.boot.common.enums.FindType;
+import com.boot.common.enums.Type;
 import com.boot.common.exception.ServiceException;
 import com.boot.common.request.page.PageResult;
-import com.boot.dal.dao.Goods;
-import com.boot.dal.dao.User;
+import com.boot.dal.dao.*;
 import com.boot.dal.repository.*;
 import com.boot.dto.common.vo.UserBasicInformation;
+import com.boot.dto.ro.PublishCommentRo;
 import com.boot.dto.vo.*;
 import com.boot.service.UserService;
 import com.boot.wrappers.GoodsWrapper;
@@ -16,6 +18,7 @@ import com.boot.wrappers.UserWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +50,8 @@ public class UserServiceImpl implements UserService {
     private final GoodsRepository goodsRepository;
 
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
+    private final PublishPriceRepository publishPriceRepository;
 
     @Override
     public UserBasicInformation getUserBasic(String userId) {
@@ -98,7 +103,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean delete(String id, DeleteType type) {
+    public Boolean delete(String id, Type type) {
         switch (type) {
             case GOODS:
                 goodsRepository.removeById(id);
@@ -114,4 +119,70 @@ public class UserServiceImpl implements UserService {
         }
         return true;
     }
+
+    @Override
+    public Boolean collect(String id, String userId) {
+        UserBasicInformation userBasic = userRepository.getUserBasic(userId);
+        Collect collect = new Collect();
+        collect.setUserId(userBasic.getId());
+        collect.setGoodsId(id);
+        return collectRepository.save(collect);
+    }
+
+    @Override
+    public Boolean cancelCollect(String id, String userId) {
+        Collect dao = collectRepository.getOne(Wrappers.<Collect>lambdaQuery().eq(Collect::getGoodsId, id).eq(Collect::getUserId, userId));
+        if (ObjectUtil.isNull(dao)) {
+            return true;
+        }
+        return collectRepository.removeById(dao);
+    }
+
+    @Override
+    public Boolean publishComment(PublishCommentRo ro) {
+        UserBasicInformation userBasic = getUserBasic(ro.getUserId());
+        Comment comment = new Comment();
+        comment.setType(ro.getType());
+        comment.setUserId(userBasic.getId());
+        comment.setContent(ro.getContent());
+        comment.setOtherId(ro.getId());
+        return commentRepository.save(comment);
+    }
+
+    @Override
+    public Boolean publishPirce(String goodsId, String userId, BigDecimal price) {
+        UserBasicInformation userBasic = getUserBasic(userId);
+        PublishPrice dao = new PublishPrice();
+        dao.setPrice(price);
+        dao.setUserId(userBasic.getId());
+        dao.setGoodsId(goodsId);
+        return publishPriceRepository.save(dao);
+    }
+
+    @Override
+    public Boolean isCollect(String goodsId, String userId) {
+        Collect dao = collectRepository.getOne(Wrappers.<Collect>lambdaQuery()
+                .eq(Collect::getGoodsId, goodsId)
+                .eq(Collect::getUserId, userId));
+        return ObjectUtil.isNotNull(dao);
+    }
+
+    @Override
+    public Boolean dyCollect(String id, String userId) {
+        UserBasicInformation userBasic = userRepository.getUserBasic(userId);
+        CollectDynamic collect = new CollectDynamic();
+        collect.setUserId(userBasic.getId());
+        collect.setDynamicId(id);
+        return collectDynamicRepository.save(collect);
+    }
+
+    @Override
+    public Boolean dyCancelCollect(String id, String userId) {
+        CollectDynamic dao = collectDynamicRepository.getOne(Wrappers.<CollectDynamic>lambdaQuery().eq(CollectDynamic::getDynamicId, id).eq(CollectDynamic::getUserId, userId));
+        if (ObjectUtil.isNull(dao)) {
+            return true;
+        }
+        return collectDynamicRepository.removeById(dao);
+    }
 }
+

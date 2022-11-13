@@ -38,7 +38,7 @@
   <select id="getData" resultMap="data">
     select id,username,avatar,sex,mark,
       ifnull((select count(*) from collect where is_deleted = 0 and user_id = u.id),0) as collect,
-      ifnull((select count(*) from dynamic where is_deleted = 0 and user_id = u.id),0) as dynamic,
+      ifnull((select count(*) from collect_dynamic where is_deleted = 0 and user_id = u.id),0) as dynamic,
       ifnull((select count(*) from goods where is_deleted = 0 and user_id = u.id),0) as publish,
       ifnull((select count(*) from `order` where is_deleted = 0 and goods_user_id = u.id and status = 'FINISHED'),0) as sold,
            ifnull((select count(*) from `order` where is_deleted = 0 and user_id = u.id and status = 'FINISHED'),0) as buy

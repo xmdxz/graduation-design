@@ -21,6 +21,10 @@
         user_id
     </sql>
     <resultMap id="goodsCollect" type="com.boot.dto.vo.CollectPageVo">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="content" column="content"/>
+        <result property="price" column="price"/>
         <result column="images" property="images"
                 typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
         <association property="userInfo" javaType="com.boot.dto.common.vo.UserBasicInformation">
@@ -31,7 +35,7 @@
         </association>
     </resultMap>
     <select id="pageCollectByUserId" resultMap="goodsCollect">
-        select u.id as u_id,u.username,u.avatar,u.sex,g.id as goods_id, g.*
+        select u.id as u_id,u.username,u.avatar,u.sex, g.*
         from collect as c
                  left join goods g on c.goods_id = g.id
                     left join user u on c.user_id = u.id

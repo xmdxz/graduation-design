@@ -1,28 +1,32 @@
-package com.boot.dal.dao;
+package com.boot.dto.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
-import com.boot.common.dao.BaseTimeDeleteEntity;
 import com.boot.common.enums.GoodsStatus;
 import com.boot.dto.common.vo.UserBasicInformation;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
  * @Author YuanXin
- * @ClassName Goods
+ * @ClassName GoodsDetailVo
  * @Description TODO
- * @Date 2022/11/9 11:25
+ * @Date 2022/11/12 19:36
  */
-@ApiModel(value = "goods")
+
 @Data
-@TableName(value = "`goods`", autoResultMap = true)
-public class Goods extends BaseTimeDeleteEntity {
+public class GoodsDetailVo {
+
+    @ApiModelProperty("创建时间")
+    private Timestamp createTime;
+
+    @ApiModelProperty("id")
+    private String id;
+
     /**
      * 商品名称
      */
@@ -61,6 +65,13 @@ public class Goods extends BaseTimeDeleteEntity {
     private GoodsStatus status;
 
     @ApiModelProperty("用户信息")
-    @TableField(exist = false)
     private UserBasicInformation userInfo;
+
+
+    @ApiModelProperty("留言")
+    private List<CommentVo> comments;
+
+    @ApiModelProperty("出价")
+    private List<PublishPriceVo> publishPrice;
+
 }

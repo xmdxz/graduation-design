@@ -16,4 +16,33 @@
     <!--@mbg.generated-->
     id, is_deleted, create_time, update_time, content, images, user_id
   </sql>
+  <resultMap id="dynamicPage" type="com.boot.dto.vo.DynamicPageVo">
+    <id column="id" property="id"/>
+    <result column="content" property="content"/>
+    <result column="is_collect" property="isCollect"/>
+    <result column="images" property="images"
+            typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+    <association property="userInfo" javaType="com.boot.dto.common.vo.UserBasicInformation">
+      <id column="u_id" property="id"/>
+      <result column="username" property="username"/>
+      <result column="sex" property="sex"/>
+      <result column="avatar" property="avatar"/>
+    </association>
+  </resultMap>
+  <select id="listPage" resultMap="dynamicPage">
+    select u.id as u_id,u.username,u.avatar,u.sex,g.id as id,
+    <choose>
+      <when test="userId != null and userId != ''">
+      if((select count(*) from collect_dynamic cd where cd.is_deleted = 0 and cd.dynamic_id = g.id and cd.user_id = #{userId,jdbcType=VARCHAR}) > 0,1,0)   as is_collect,
+      </when>
+      <otherwise>
+        0 as is_collect,
+      </otherwise>
+    </choose>
+    g.content,
+    g.images
+    from dynamic g
+           left join user u on g.user_id = u.id
+    where g.is_deleted = 0
+    </select>
 </mapper>

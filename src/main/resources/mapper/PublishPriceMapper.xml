@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.boot.dal.mapper.GoodsMapper">
-  <resultMap id="BaseResultMap" type="com.boot.dal.dao.Goods">
+<mapper namespace="com.boot.dal.mapper.PublishPriceMapper">
+  <resultMap id="BaseResultMap" type="com.boot.dal.dao.PublishPrice">
     <!--@mbg.generated-->
-    <!--@Table goods-->
+    <!--@Table publish_price-->
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="images" jdbcType="VARCHAR" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler" property="images" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
     <association property="userInfo" javaType="com.boot.dto.common.vo.UserBasicInformation">
       <id column="u_id" property="id"/>
       <result column="username" property="username"/>
@@ -23,18 +20,15 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, is_deleted, create_time, update_time, `name`, images, content, user_id, price, 
-    `status`
+    id, is_deleted, create_time, update_time, goods_id, user_id, price
   </sql>
 
-  <select id="pageOwn" resultMap="BaseResultMap">
-      select u.id as u_id,u.username,u.avatar,u.sex,g.*
-      from goods as g
-             left join user u on g.user_id = u.id
-    where g.is_deleted = 0
-        <if test="userId != null and userId != ''">
-          and user_id = #{userId,jdbcType=VARCHAR}
-        </if>
-    order by g.create_time desc
-  </select>
+  <select id="listById" resultMap="BaseResultMap">
+    select u.id as u_id, u.username, u.avatar, u.sex, c.id as id, c.*
+    from publish_price as c
+    left join user u on c.user_id = u.id
+    where c.is_deleted = 0
+    and c.goods_id = #{id,jdbcType=VARCHAR}
+    order by c.create_time desc
+    </select>
 </mapper>

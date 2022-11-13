@@ -17,6 +17,8 @@
   </sql>
 
   <resultMap id="dynamicCollect" type="com.boot.dto.vo.CollectDynamicPageVo">
+    <id column="id" property="id"/>
+    <result column="content" property="content"/>
     <result column="images" property="images"
             typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
     <association property="userInfo" javaType="com.boot.dto.common.vo.UserBasicInformation">
@@ -28,9 +30,12 @@
   </resultMap>
   <select id="pageCollectByUserId" resultMap="dynamicCollect">
     select u.id as u_id,u.username,u.avatar,u.sex,g.id as id, g.*
-    from collect as c
-    left join dynamic g on c.goods_id = g.id
+    from collect_dynamic as c
+    left join dynamic g on c.dynamic_id = g.id
     left join user u on c.user_id = u.id
-    where c.is_deleted = 0 and c.user_id =  #{id,jdbcType=VARCHAR}
+    where c.is_deleted = 0
+    <if test="id != null and id != ''">
+      and c.user_id =  #{id,jdbcType=VARCHAR}
+    </if>
   </select>
 </mapper>
