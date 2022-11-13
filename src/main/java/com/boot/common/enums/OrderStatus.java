@@ -15,7 +15,7 @@ import lombok.Getter;
 public enum OrderStatus {
 
     FINISHED("已完成");
-    
+
     private String mark;
 
 }

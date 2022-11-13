@@ -15,8 +15,8 @@ import java.util.List;
  */
 @Service
 public class ChatRepository extends ServiceImpl<ChatMapper, Chat> {
-    public List<Chat> chatList(String userId){
-        return baseMapper.selectList(Wrappers.<Chat>lambdaQuery().eq(Chat::getUserId,userId)
+    public List<Chat> chatList(String goodsId){
+        return baseMapper.selectList(Wrappers.<Chat>lambdaQuery().eq(Chat::getGoodsId,goodsId)
                 .eq(Chat::getIsDeleted,"0"));
     }
 }

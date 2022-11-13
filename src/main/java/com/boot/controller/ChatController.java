@@ -3,6 +3,7 @@ package com.boot.controller;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
 import com.boot.dal.dao.Chat;
+import com.boot.dal.dao.Order;
 import com.boot.service.ChatService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,10 +25,10 @@ public class ChatController {
 
     private final ChatService chatService;
 
-    @GetMapping(value = "/chatList/{userId}")
+    @GetMapping(value = "/chatList/{goodsId}")
     @ApiOperation("聊天列表")
-    public Response<List<Chat>> chatList(@PathVariable String userId) {
-        return ResponseUtil.success(chatService.getChatList(userId));
+    public Response<List<Chat>> chatList(@PathVariable String goodsId) {
+        return ResponseUtil.success(chatService.getChatList(goodsId));
     }
 
     @DeleteMapping(value = "/{id}")
@@ -40,5 +41,11 @@ public class ChatController {
     @ApiOperation("插入聊天")
     public Response<Boolean> insertChat(@RequestBody  Chat chat){
         return ResponseUtil.success(chatService.insertNewChat(chat));
+    }
+
+    @PostMapping(value = "/buy")
+    @ApiOperation("购买")
+    public Response<Integer> buy(@RequestBody Order order){
+        return ResponseUtil.success(chatService.buy(order));
     }
 }
