@@ -44,5 +44,8 @@
     from dynamic g
            left join user u on g.user_id = u.id
     where g.is_deleted = 0
+    <if test="keywords != null and keywords != ''">
+      and (u.username like concat('%',#{keywords,jdbcType=VARCHAR},'%') or g.content like concat('%',#{keywords,jdbcType=VARCHAR},'%'))
+    </if>
     </select>
 </mapper>

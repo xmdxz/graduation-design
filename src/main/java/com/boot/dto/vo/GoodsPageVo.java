@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -61,5 +62,8 @@ public class GoodsPageVo {
     @ApiModelProperty(value = "状态")
     private GoodsStatus status;
 
+
+    @ApiModelProperty("发布时间")
+    private Timestamp createTime;
 
 }

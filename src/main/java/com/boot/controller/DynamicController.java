@@ -37,7 +37,13 @@ public class DynamicController {
 
     @GetMapping("/page")
     @ApiOperation("分页获取")
-    public Response<PageResult<DynamicPageVo>> page(PageQuery page, String userId) {
-        return ResponseUtil.success(dynamicService.page(PageQuery.getPage(page), userId));
+    public Response<PageResult<DynamicPageVo>> page(PageQuery page, String userId, String keywords) {
+        return ResponseUtil.success(dynamicService.page(PageQuery.getPage(page), userId, keywords));
+    }
+
+    @GetMapping("/delete")
+    @ApiOperation("删除")
+    public Response<Boolean> delete(String id) {
+        return ResponseUtil.success(dynamicService.delete(id));
     }
 }

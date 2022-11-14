@@ -6,6 +6,7 @@ import com.boot.common.exception.ServiceException;
 import com.boot.dal.dao.User;
 import com.boot.dal.repository.UserRepository;
 import com.boot.dto.common.ro.PhoneLoginRo;
+import com.boot.dto.ro.BackLoginRo;
 import com.boot.dto.ro.PhoneRegistryRo;
 import com.boot.service.LoginService;
 import lombok.AllArgsConstructor;
@@ -54,5 +55,14 @@ public class LoginServiceImpl implements LoginService {
         user.setPassword(ro.getPassword());
         userRepository.save(user);
         return true;
+    }
+
+    @Override
+    public String backLogin(BackLoginRo ro) {
+        if (CharSequenceUtil.equals("admin", ro.getUsername()) && CharSequenceUtil.equals("123456", ro.getPassword())) {
+            return "12332r7829384792832we399sdf1sad";
+        } else {
+            throw new ServiceException("用户名或密码错误");
+        }
     }
 }

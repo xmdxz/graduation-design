@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DynamicRepository extends ServiceImpl<DynamicMapper, Dynamic> {
-    public IPage<DynamicPageVo> listPage(IPage<DynamicPageVo> page, String userId) {
-        return baseMapper.listPage(page, userId);
+    public IPage<DynamicPageVo> listPage(IPage<DynamicPageVo> page, String userId, String keywords) {
+        return baseMapper.listPage(page, userId, keywords);
     }
 }

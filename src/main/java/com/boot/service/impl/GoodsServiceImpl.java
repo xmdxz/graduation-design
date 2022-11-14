@@ -50,8 +50,8 @@ public class GoodsServiceImpl implements GoodsService {
 
 
     @Override
-    public PageResult<GoodsPageVo> page(IPage<Goods> page) {
-        IPage<Goods> goodsIPage = goodsRepository.pageOwn(page, null);
+    public PageResult<GoodsPageVo> page(IPage<Goods> page, String keywords) {
+        IPage<Goods> goodsIPage = goodsRepository.pageOwn(page, null, keywords);
         List<GoodsPageVo> res = goodsWrapper.toPageVo(goodsIPage.getRecords());
         return PageResult.buildResult(goodsIPage.getTotal(), res);
     }
@@ -80,5 +80,10 @@ public class GoodsServiceImpl implements GoodsService {
         goods.setUserId(userBasic.getId());
         goods.setPrice(ro.getPrice());
         return goodsRepository.save(goods);
+    }
+
+    @Override
+    public Boolean delete(String id) {
+        return goodsRepository.removeById(id);
     }
 }

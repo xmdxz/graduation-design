@@ -7,6 +7,7 @@ import com.boot.common.request.page.PageResult;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
 import com.boot.dto.common.vo.UserBasicInformation;
+import com.boot.dto.ro.AddUserRo;
 import com.boot.dto.ro.PublishCommentRo;
 import com.boot.dto.vo.*;
 import com.boot.service.UserService;
@@ -33,6 +34,24 @@ public class UserController {
 
     private final UserService userService;
 
+
+    @GetMapping("/page")
+    @ApiOperation("用户列表")
+    public Response<PageResult<UserPageVo>> page(PageQuery page, String keywords) {
+        return ResponseUtil.success(userService.page(PageQuery.getPage(page), keywords));
+    }
+
+    @PostMapping("/add")
+    @ApiOperation("添加用户")
+    public Response<Boolean> add(@RequestBody @Validated AddUserRo ro) {
+        return ResponseUtil.success(userService.add(ro));
+    }
+
+    @GetMapping("/deleteUser")
+    @ApiOperation("删除用户")
+    public Response<Boolean> delete(String id) {
+        return ResponseUtil.success(userService.deleteUser(id));
+    }
 
     @GetMapping("/basicInfo")
     @ApiOperation("获取用户个人基本信息")

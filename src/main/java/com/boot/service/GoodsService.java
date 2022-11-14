@@ -14,9 +14,11 @@ import com.boot.dto.vo.GoodsPageVo;
  * @Date 2022/11/12 16:00
  */
 public interface GoodsService {
-    PageResult<GoodsPageVo> page(IPage<Goods> page);
+    PageResult<GoodsPageVo> page(IPage<Goods> page, String keywords);
 
     GoodsDetailVo detail(String id);
 
     Boolean publish(PublishGoodsRo ro);
+
+    Boolean delete(String id);
 }

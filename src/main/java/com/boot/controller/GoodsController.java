@@ -32,8 +32,8 @@ public class GoodsController {
 
     @GetMapping(value = "/page")
     @ApiOperation("首页获取商品")
-    public Response<PageResult<GoodsPageVo>> page(PageQuery page) {
-        return ResponseUtil.success(goodsService.page(PageQuery.getPage(page)));
+    public Response<PageResult<GoodsPageVo>> page(PageQuery page, String keywords) {
+        return ResponseUtil.success(goodsService.page(PageQuery.getPage(page), keywords));
     }
 
     @GetMapping(value = "/detail")
@@ -47,4 +47,11 @@ public class GoodsController {
     public Response<Boolean> publish(@RequestBody @Validated PublishGoodsRo ro) {
         return ResponseUtil.success(goodsService.publish(ro));
     }
+
+    @GetMapping("/delete")
+    @ApiOperation("删除商品")
+    public Response<Boolean> delete(String id) {
+        return ResponseUtil.success(goodsService.delete(id));
+    }
+
 }
