@@ -81,6 +81,7 @@ public class ChatServiceImpl implements ChatService {
             vo.setName(goods.getName());
             vo.setImages(goods.getImages());
             vo.setContent(chat.getContent());
+            vo.setGoodsId(chat.getGoodsId());
             res.add(vo);
         }
 

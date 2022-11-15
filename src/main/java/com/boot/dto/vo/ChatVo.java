@@ -18,4 +18,6 @@ public class ChatVo {
     private List<String> images;
     @ApiModelProperty(value = "聊天内容")
     private String content;
+    @ApiModelProperty(value = "商品编号")
+    private String goodsId;
 }
