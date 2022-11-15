@@ -4,6 +4,7 @@ import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
 import com.boot.dal.dao.Chat;
 import com.boot.dal.dao.Order;
+import com.boot.dto.vo.ChatVo;
 import com.boot.service.ChatService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,9 +27,15 @@ public class ChatController {
     private final ChatService chatService;
 
     @GetMapping(value = "/chatList/{goodsId}")
-    @ApiOperation("聊天列表")
+    @ApiOperation("聊天消息列表")
     public Response<List<Chat>> chatList(@PathVariable String goodsId) {
         return ResponseUtil.success(chatService.getChatList(goodsId));
+    }
+
+    @GetMapping(value = "/chatList")
+    @ApiOperation("聊天列表")
+    public Response<List<ChatVo>> chatVoList(String userId) {
+        return ResponseUtil.success(chatService.getChatVoList(userId));
     }
 
     @DeleteMapping(value = "/{id}")

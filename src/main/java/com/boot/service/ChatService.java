@@ -3,6 +3,7 @@ package com.boot.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.boot.dal.dao.Chat;
 import com.boot.dal.dao.Order;
+import com.boot.dto.vo.ChatVo;
 
 import java.util.List;
 
@@ -37,4 +38,6 @@ public interface ChatService {
     public Boolean deleteChat(String id);
 
     public int buy(Order order);
+
+    public List<ChatVo> getChatVoList(String userId);
 }

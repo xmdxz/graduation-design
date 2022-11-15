@@ -19,4 +19,9 @@ public class ChatRepository extends ServiceImpl<ChatMapper, Chat> {
         return baseMapper.selectList(Wrappers.<Chat>lambdaQuery().eq(Chat::getGoodsId,goodsId)
                 .eq(Chat::getIsDeleted,"0"));
     }
+
+    public List<Chat> chatByUser(String userId){
+        return baseMapper.selectList(Wrappers.<Chat>lambdaQuery().eq(Chat::getUserId,userId)
+                .eq(Chat::getIsDeleted,"0").groupBy(Chat::getGoodsId));
+    }
 }

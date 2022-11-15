@@ -13,11 +13,13 @@ import com.boot.dal.repository.GoodsRepository;
 import com.boot.dal.repository.OrderRepository;
 import com.boot.dal.repository.UserRepository;
 import com.boot.dto.common.vo.UserBasicInformation;
+import com.boot.dto.vo.ChatVo;
 import com.boot.service.ChatService;
 import com.boot.wrappers.UserWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +69,22 @@ public class ChatServiceImpl implements ChatService {
         order.setAmount(goods.getPrice());
         orderRepository.save(order);
         return goodsRepository.soldGoods(order.getGoodsId());
+    }
+
+    @Override
+    public List<ChatVo> getChatVoList(String userId) {
+        List<Chat> chatList = chatRepository.chatByUser(userId);
+        List<ChatVo> res = new ArrayList<>();
+        for (Chat chat : chatList) {
+            Goods goods = goodsRepository.getById(chat.getGoodsId());
+            ChatVo vo = new ChatVo();
+            vo.setName(goods.getName());
+            vo.setImages(goods.getImages());
+            vo.setContent(chat.getContent());
+            res.add(vo);
+        }
+
+        return res;
     }
 
 
