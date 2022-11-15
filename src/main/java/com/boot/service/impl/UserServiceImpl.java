@@ -1,5 +1,6 @@
 package com.boot.service.impl;
 
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -10,6 +11,7 @@ import com.boot.common.request.page.PageResult;
 import com.boot.dal.dao.*;
 import com.boot.dal.repository.*;
 import com.boot.dto.common.vo.UserBasicInformation;
+import com.boot.dto.ro.AddUserRo;
 import com.boot.dto.ro.PublishCommentRo;
 import com.boot.dto.vo.*;
 import com.boot.service.UserService;
@@ -73,7 +75,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageResult<GoodsPageVo> publishPage(IPage<Goods> page, String userId) {
-        IPage<Goods> goodsIPage = goodsRepository.pageOwn(page, userId);
+        IPage<Goods> goodsIPage = goodsRepository.pageOwn(page, userId, null);
         List<GoodsPageVo> res = goodsWrapper.toPageVo(goodsIPage.getRecords());
         return PageResult.buildResult(goodsIPage.getTotal(), res);
     }
@@ -183,6 +185,36 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return collectDynamicRepository.removeById(dao);
+    }
+
+    @Override
+    public PageResult<UserPageVo> page(IPage<User> page, String keywords) {
+        IPage<User> userPage = userRepository.page(page, Wrappers.<User>lambdaQuery()
+                .like(CharSequenceUtil.isNotBlank(keywords), User::getPhone, keywords)
+                .or(CharSequenceUtil.isNotBlank(keywords), wrappers -> {
+                    wrappers.like(User::getUsername, keywords);
+                })
+                .orderByDesc(User::getCreateTime));
+        List<UserPageVo> userPageVos = userWrapper.toPage(userPage.getRecords());
+        return PageResult.buildResult(userPage.getTotal(), userPageVos);
+    }
+
+    @Override
+    public Boolean add(AddUserRo ro) {
+        User dao = userRepository.getByPhone(ro.getPhone());
+        if (ObjectUtil.isNotNull(dao)) {
+            throw new ServiceException("该手机号已存在");
+        }
+        User user = new User();
+        user.setPassword(ro.getPassword());
+        user.setPhone(ro.getPhone());
+        user.setUsername(ro.getUsername());
+        return userRepository.save(user);
+    }
+
+    @Override
+    public Boolean deleteUser(String id) {
+        return userRepository.removeById(id);
     }
 }
 

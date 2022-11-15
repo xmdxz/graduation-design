@@ -1,6 +1,7 @@
 package com.boot.service;
 
 import com.boot.dto.common.ro.PhoneLoginRo;
+import com.boot.dto.ro.BackLoginRo;
 import com.boot.dto.ro.PhoneRegistryRo;
 
 /**
@@ -28,4 +29,6 @@ public interface LoginService {
      * @return
      */
     Boolean registry(PhoneRegistryRo ro);
+
+    String backLogin(BackLoginRo ro);
 }

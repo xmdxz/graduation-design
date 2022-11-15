@@ -14,5 +14,5 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface GoodsMapper extends BaseMapper<Goods> {
-    IPage<Goods> pageOwn(IPage<Goods> page, @Param("userId") String userId);
+    IPage<Goods> pageOwn(IPage<Goods> page, @Param("userId") String userId, @Param("keywords") String keywords);
 }

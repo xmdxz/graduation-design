@@ -12,7 +12,9 @@ import com.boot.dto.vo.DynamicPageVo;
  * @Date 2022/11/13 15:47
  */
 public interface DynamicService {
-    PageResult<DynamicPageVo> page(IPage<DynamicPageVo> page, String userId);
+    PageResult<DynamicPageVo> page(IPage<DynamicPageVo> page, String userId, String keywords);
 
     Boolean publish(PublishDynamicRo ro);
+
+    Boolean delete(String id);
 }

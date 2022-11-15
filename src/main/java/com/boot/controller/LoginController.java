@@ -3,6 +3,7 @@ package com.boot.controller;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
 import com.boot.dto.common.ro.PhoneLoginRo;
+import com.boot.dto.ro.BackLoginRo;
 import com.boot.dto.ro.PhoneRegistryRo;
 import com.boot.service.LoginService;
 import io.swagger.annotations.Api;
@@ -45,5 +46,13 @@ public class LoginController {
     public Response<Boolean> registry(@Validated @RequestBody PhoneRegistryRo ro) {
         return ResponseUtil.success(loginService.registry(ro));
     }
+
+
+    @PostMapping("/back")
+    @ApiOperation("后台登录")
+    public Response<String> backLogin(@Validated @RequestBody BackLoginRo ro) {
+        return ResponseUtil.success(loginService.backLogin(ro));
+    }
+
 
 }

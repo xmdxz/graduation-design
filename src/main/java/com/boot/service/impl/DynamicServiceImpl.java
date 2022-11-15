@@ -31,8 +31,8 @@ public class DynamicServiceImpl implements DynamicService {
     private final UserRepository userRepository;
 
     @Override
-    public PageResult<DynamicPageVo> page(IPage<DynamicPageVo> page, String userId) {
-        IPage<DynamicPageVo> dynamicPageVoIPage = dynamicRepository.listPage(page, userId);
+    public PageResult<DynamicPageVo> page(IPage<DynamicPageVo> page, String userId, String keywords) {
+        IPage<DynamicPageVo> dynamicPageVoIPage = dynamicRepository.listPage(page, userId, keywords);
         return PageResult.buildResult(dynamicPageVoIPage);
     }
 
@@ -44,5 +44,10 @@ public class DynamicServiceImpl implements DynamicService {
         dynamic.setUserId(userBasic.getId());
         dynamic.setImages(ro.getImages());
         return dynamicRepository.save(dynamic);
+    }
+
+    @Override
+    public Boolean delete(String id) {
+        return dynamicRepository.removeById(id);
     }
 }

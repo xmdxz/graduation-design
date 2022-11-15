@@ -4,6 +4,7 @@ import com.boot.dto.common.vo.UserBasicInformation;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -15,6 +16,8 @@ import java.util.List;
 
 @Data
 public class DynamicPageVo {
+
+    private Timestamp createTime;
 
     @ApiModelProperty("用户基本信息")
     private UserBasicInformation userInfo;

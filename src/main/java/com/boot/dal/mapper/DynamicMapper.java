@@ -15,5 +15,5 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface DynamicMapper extends BaseMapper<Dynamic> {
-    IPage<DynamicPageVo> listPage(IPage<DynamicPageVo> page, @Param("userId") String userId);
+    IPage<DynamicPageVo> listPage(IPage<DynamicPageVo> page, @Param("userId") String userId, @Param("keywords") String keywords);
 }
