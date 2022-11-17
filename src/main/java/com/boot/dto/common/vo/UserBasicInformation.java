@@ -7,12 +7,6 @@ import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 
-/**
- * @Author YuanXin
- * @ClassName UserBasicInformation
- * @Description TODO
- * @Date 2022/9/11 16:10
- */
 
 @Data
 @Accessors(chain = true)

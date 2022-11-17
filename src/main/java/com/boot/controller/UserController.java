@@ -19,12 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
-/**
- * @Author YuanXin
- * @ClassName UserController
- * @Description TODO
- * @Date 2022/11/8 16:59
- */
 
 @RestController
 @RequestMapping("/user")

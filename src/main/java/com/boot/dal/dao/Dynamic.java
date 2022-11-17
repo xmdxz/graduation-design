@@ -10,12 +10,6 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName Dynamic
- * @Description TODO
- * @Date 2022/11/9 11:25
- */
 @ApiModel(value = "`dynamic`")
 @Data
 @TableName(value = "`dynamic`")

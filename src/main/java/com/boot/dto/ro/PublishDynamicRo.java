@@ -7,12 +7,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName PublishDynamicRo
- * @Description TODO
- * @Date 2022/11/13 15:48
- */
 
 @Data
 public class PublishDynamicRo {

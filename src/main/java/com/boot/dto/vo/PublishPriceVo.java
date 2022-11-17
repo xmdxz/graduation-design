@@ -7,12 +7,6 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-/**
- * @Author YuanXin
- * @ClassName PublishPriceVo
- * @Description TODO
- * @Date 2022/11/13 11:39
- */
 
 @Data
 public class PublishPriceVo {

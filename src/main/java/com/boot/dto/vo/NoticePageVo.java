@@ -6,12 +6,6 @@ import lombok.Data;
 
 import java.sql.Timestamp;
 
-/**
- * @Author YuanXin
- * @ClassName NoticePageVo
- * @Description TODO
- * @Date 2022/11/14 16:41
- */
 
 @Data
 public class NoticePageVo {

@@ -4,12 +4,6 @@ import com.boot.dto.common.ro.PhoneLoginRo;
 import com.boot.dto.ro.BackLoginRo;
 import com.boot.dto.ro.PhoneRegistryRo;
 
-/**
- * @Author YuanXin
- * @ClassName LoginService
- * @Description TODO
- * @Date 2022/9/5 18:11
- */
 
 public interface LoginService {
 

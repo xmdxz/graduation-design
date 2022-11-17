@@ -25,12 +25,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName GoodsServiceImpl
- * @Description TODO
- * @Date 2022/11/12 16:00
- */
+
 @Service
 @AllArgsConstructor
 public class GoodsServiceImpl implements GoodsService {

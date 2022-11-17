@@ -9,13 +9,6 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName GoodsPageVo
- * @Description TODO
- * @Date 2022/11/9 17:16
- */
-
 
 @Data
 public class GoodsPageVo {

@@ -3,15 +3,13 @@ package com.boot.common.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * @Author YuanXin
- * @ClassName Type
- * @Description TODO
- * @Date 2022/11/12 13:06
- */
+
 @Getter
 @AllArgsConstructor
 public enum Type {
+    /**
+     * 此项目中用于区分评论的类型
+     */
     ORDER("订单"),
     GOODS("商品"),
     DYNAMIC("帖子");

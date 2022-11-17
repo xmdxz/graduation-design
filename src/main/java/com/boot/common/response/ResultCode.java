@@ -1,10 +1,6 @@
 package com.boot.common.response;
 
 
-/**
- * @author YuanXin
- */
-
 public enum ResultCode implements BaseCode {
 
     /**

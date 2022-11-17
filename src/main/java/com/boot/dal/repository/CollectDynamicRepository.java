@@ -7,12 +7,6 @@ import com.boot.dal.mapper.CollectDynamicMapper;
 import com.boot.dto.vo.CollectDynamicPageVo;
 import org.springframework.stereotype.Service;
 
-/**
- * @Author YuanXin
- * @ClassName CollectDynamicRepository
- * @Description TODO
- * @Date 2022/11/11 16:53
- */
 
 @Service
 public class CollectDynamicRepository extends ServiceImpl<CollectDynamicMapper, CollectDynamic> {

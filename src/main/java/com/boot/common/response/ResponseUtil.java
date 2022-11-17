@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.util.Map;
 
 
-/**
- * @author YuanXin
- */
+//对 Response统一返回实体类的进一步封装
 public class ResponseUtil {
 
     /**

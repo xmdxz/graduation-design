@@ -8,12 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName CommentRepository
- * @Description TODO
- * @Date 2022/11/12 19:45
- */
 
 @Service
 public class CommentRepository extends ServiceImpl<CommentMapper, Comment> {

@@ -7,12 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName PublishPriceRepository
- * @Description TODO
- * @Date 2022/11/13 11:38
- */
+
 @Service
 public class PublishPriceRepository extends ServiceImpl<PublishPriceMapper, PublishPrice> {
     public List<PublishPrice> listById(String id) {

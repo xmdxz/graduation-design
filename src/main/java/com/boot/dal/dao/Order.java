@@ -9,12 +9,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-/**
- * @Author YuanXin
- * @ClassName Order
- * @Description TODO
- * @Date 2022/11/9 10:59
- */
+
 @ApiModel(value = "`order`")
 @Data
 @TableName(value = "`order`")

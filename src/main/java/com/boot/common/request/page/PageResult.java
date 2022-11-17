@@ -6,15 +6,15 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @author YuanXin
- */
+
 @Data
 @ApiModel("分页结果")
 public class PageResult<T> {
 
+    // 数据总量
     private Long total;
 
+    // 当前页的数据
     private List<T> records;
 
     public PageResult() {

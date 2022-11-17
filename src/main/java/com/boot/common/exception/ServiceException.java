@@ -3,9 +3,8 @@ package com.boot.common.exception;
 import com.boot.common.response.BaseCode;
 import com.boot.common.response.ResultCode;
 
-/**
- * @author YuanXin
- */
+
+//自定义异常，业务逻辑发生异常后可用此异常抛出，他是运行时异常
 public class ServiceException extends RuntimeException {
 
     private static final long serialVersionUID = -412302766008471476L;

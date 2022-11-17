@@ -4,12 +4,6 @@ import com.boot.common.enums.Type;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * @Author YuanXin
- * @ClassName PublishCommentRo
- * @Description TODO
- * @Date 2022/11/13 11:33
- */
 
 @Data
 public class PublishCommentRo {

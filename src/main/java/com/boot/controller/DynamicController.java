@@ -13,12 +13,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @Author YuanXin
- * @ClassName DynamicController
- * @Description TODO
- * @Date 2022/11/13 15:46
- */
 
 @RestController
 @AllArgsConstructor

@@ -17,12 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-/**
- * @Author YuanXin
- * @ClassName LoginController
- * @Description TODO
- * @Date 2022/9/5 18:10
- */
 
 @AllArgsConstructor
 @Api(tags = "登录相关")

@@ -5,15 +5,12 @@ import com.boot.dal.dao.Comment;
 
 import java.util.List;
 
-/**
- * @author Shubo_Yang
- * @version 1.0
- * @date 2022/11/7 14:41
- */
+
 public interface CommentService extends IService<Comment> {
 
     /**
      * 查询评论列表
+     *
      * @param pid 父id
      * @return java.util.List<com.boot.dal.dao.Comment>
      * @author Shubo_Yang
@@ -23,6 +20,7 @@ public interface CommentService extends IService<Comment> {
 
     /**
      * 插入商品评论
+     *
      * @param comment
      * @return int
      * @author Shubo_Yang
@@ -32,6 +30,7 @@ public interface CommentService extends IService<Comment> {
 
     /**
      * 插入动态评论
+     *
      * @param comment
      * @return int
      * @author Shubo_Yang

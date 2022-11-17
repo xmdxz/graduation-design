@@ -7,12 +7,6 @@ import lombok.Data;
 import java.sql.Timestamp;
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName DynamicPageVo
- * @Description TODO
- * @Date 2022/11/13 15:52
- */
 
 @Data
 public class DynamicPageVo {

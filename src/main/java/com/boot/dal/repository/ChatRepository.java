@@ -8,20 +8,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author Shubo_Yang
- * @version 1.0
- * @date 2022/11/12 15:04
- */
+
 @Service
 public class ChatRepository extends ServiceImpl<ChatMapper, Chat> {
-    public List<Chat> chatList(String goodsId){
-        return baseMapper.selectList(Wrappers.<Chat>lambdaQuery().eq(Chat::getGoodsId,goodsId)
-                .eq(Chat::getIsDeleted,"0"));
+    public List<Chat> chatList(String goodsId) {
+        return baseMapper.selectList(Wrappers.<Chat>lambdaQuery().eq(Chat::getGoodsId, goodsId)
+                .eq(Chat::getIsDeleted, "0"));
     }
 
-    public List<Chat> chatByUser(String userId){
-        return baseMapper.selectList(Wrappers.<Chat>lambdaQuery().eq(Chat::getUserId,userId)
-                .eq(Chat::getIsDeleted,"0").groupBy(Chat::getGoodsId));
+    public List<Chat> chatByUser(String userId) {
+        return baseMapper.selectList(Wrappers.<Chat>lambdaQuery().eq(Chat::getUserId, userId)
+                .eq(Chat::getIsDeleted, "0").groupBy(Chat::getGoodsId));
     }
 }

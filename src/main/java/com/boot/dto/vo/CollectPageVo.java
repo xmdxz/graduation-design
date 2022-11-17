@@ -9,12 +9,6 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName CollectPageVo
- * @Description TODO
- * @Date 2022/11/9 16:34
- */
 
 @Data
 public class CollectPageVo {

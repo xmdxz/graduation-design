@@ -14,13 +14,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @Author YuanXin
- * @ClassName GoodsController
- * @Description TODO
- * @Date 2022/11/12 15:59
- */
-
 @RestController
 @RequestMapping(value = "/goods")
 @Api(tags = "商品相关")

@@ -37,12 +37,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @Author YuanXin
- * @ClassName CommonServiceImpl
- * @Description TODO
- * @Date 2022/11/9 18:10
- */
+
 @Service
 @Log4j2
 @AllArgsConstructor

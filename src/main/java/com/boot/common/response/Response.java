@@ -7,22 +7,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/**
- * @author YuanXin
- */
+//Restful风格下，全局请求返回结果封装，算是一个工具类，如若问起，是在网上寻找的解决方案
 @Data
 public class Response<T> implements Serializable {
 
     private static final long serialVersionUID = 5657560322950471121L;
 
+    /**
+     * 请求是否成功
+     */
     private boolean success;
 
+    /**
+     * 请求返回的结果码,详情请看ResultCode类
+     */
     private Integer code;
 
+    /**
+     * 结果返回所携带的信息
+     */
     private String message;
 
+    /**
+     * 返回的真实数据
+     */
     private T data;
 
+    /**
+     * 额外结果
+     */
     private Map<String, Object> extra;
 
     /**

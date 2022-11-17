@@ -15,9 +15,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 
-/**
- * @author YuanXin
- */
 @Data
 @ApiModel("分页请求")
 @AllArgsConstructor

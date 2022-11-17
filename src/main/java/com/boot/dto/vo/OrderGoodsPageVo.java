@@ -8,13 +8,6 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName OrderGoodsPageVo
- * @Description TODO
- * @Date 2022/11/9 17:51
- */
-
 
 @Data
 public class OrderGoodsPageVo {

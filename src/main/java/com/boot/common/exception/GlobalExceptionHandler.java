@@ -18,25 +18,26 @@ import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @Author YuanXin
- * @ClassName GlobalExceptionHandler
- * @Description TODO
- * @Date 2022/8/12 10:00
- */
-
-@RestControllerAdvice
-@Log4j2
+@RestControllerAdvice //springboot的全局异常处理注解，项目中抛出异常后，可在此类中一起处理
+@Log4j2 // 表示日志打印注解，属于lomback
 public class GlobalExceptionHandler {
 
 
+    /**
+     * 处理自定义异常，也就是返回异常
+     *
+     * @param response
+     * @param exception
+     */
     @ExceptionHandler({JsonProcessingException.class, ServiceException.class})
+    // 表明如果项目中抛出了这两种异常JsonProcessingException, ServiceException，则交由这个方法处理
     public void handlePusherException(HttpServletResponse response, Exception exception) {
         String message = exception.getMessage();
         log.error("发生异常:" + message);
         ResponseUtil.outputResponse(response, ResponseUtil.error(ResultCode.FAILURE, message));
     }
 
+    // 以下的代码如若问起，为网上学习时，学到的模板代码
 
     /**
      * 参数校验异常

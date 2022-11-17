@@ -8,12 +8,7 @@ import com.boot.dto.vo.OrderGoodsPageVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @Author YuanXin
- * @ClassName OrderMapper
- * @Description TODO
- * @Date 2022/11/9 10:59
- */
+
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
     IPage<OrderGoodsPageVo> pageOwn(IPage<OrderGoodsPageVo> page, @Param("userId") String userId, @Param("type") FindType type);

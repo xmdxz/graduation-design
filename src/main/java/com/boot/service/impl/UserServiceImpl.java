@@ -24,13 +24,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @Author YuanXin
- * @ClassName UserServiceImpl
- * @Description TODO
- * @Date 2022/10/27 17:50
- */
-
 
 @Service
 @AllArgsConstructor

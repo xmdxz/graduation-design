@@ -1,20 +1,79 @@
 server:
   servlet:
+#    项目前缀，这样理解，如果这里写为 /a，那么前端在请求时，必须要加上/a前缀
     context-path: /
+#    tomcat端口号,随意配置
   port: 10086
-  shutdown: GRACEFUL
 
 
 spring:
-  profiles:
-    active: dev
+#  spring应用的应用名称
   application:
     name: graduation-design
-  lifecycle:
-    timeout-per-shutdown-phase: 30s
+#    文件上传相关配置
   servlet:
     multipart:
+#      开启文件上传功能
       enabled: true
+#      单个文件上传最大为50MB
       max-file-size: 50MB
+#      总上传大小最大为1GB
       max-request-size: 1GB
+#  json格式化配置
+  jackson:
+#    前后端时间交互式，要以这种格式返回或接收 y表示年  M表示月 d表示日  H表示小时 m表示分钟 s表示秒数
+    date-format: yyyy-MM-dd HH:mm:ss
+#    固定写法，表明时区，我们在中国，属于东八区
+    time-zone: GMT+8
+#数据库
+  datasource:
+#    jdbc驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#   数据库用户名
+    username: root
+#    数据库密码
+    password: 123456
+#    数据库链接url  固定写法
+    url: jdbc:mysql://127.0.0.1:3306/xianyu?useUnicode=true&characterEncoding=utf-8&useSSL=false&nullCatalogMeansCurrent=true
+#mybatis-plus 设置
+mybatis-plus:
+  global-config:
+    db-config:
+      # 主键默认逻辑，雪花算法,也就是BaseEneity中的id的自动生成策略
+      id-type: assign_id
+#      开启下划线转驼峰  例如数据库字段为a_b,mybatis-plus可以帮我们自动转换为aB
+      table-underline: true
+#      逻辑删除的字段
+      logic-delete-field: is_deleted
+#      逻辑删除的值
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+#      myabis的自定义sql文件的位置，classpath就表示类路径，mapper包
+  mapper-locations: classpath*:/mapper/*.xml
+  configuration:
+#    固定写法 开启sql日志
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl #开启sql日志
+
+
+
+#一下均为自定义设置
+#swagger
+swagger:
+#  开启swagger
+  enable: true
+#  应用名称
+  name: 数码二手交易系统
+#  一些无关紧要的配置
+  personUrl: http://localhost:10086
+  email: 1
+  title: 数码二手交易系统
+  description: 数码二手交易系统
+  version: 1.0.0
+
+logging:
+#  日志配置文件的所在位置
+  config: classpath:config/log4j2.xml
+  level:
+#    定义我们项目的自己的包下的日志级别为debug
+    com.boot: debug
 

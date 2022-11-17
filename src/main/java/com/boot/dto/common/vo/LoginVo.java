@@ -5,13 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-/**
- * @Author YuanXin
- * @ClassName LoginVo
- * @Description TODO
- * @Date 2022/9/7 16:19
- */
-
 @Data
 @Accessors(chain = true)
 public class LoginVo {

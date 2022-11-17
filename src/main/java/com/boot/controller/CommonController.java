@@ -23,12 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName CommonController
- * @Description TODO
- * @Date 2022/9/17 11:20
- */
+
 @RestController
 @Api(tags = "通用")
 @AllArgsConstructor
@@ -38,6 +33,7 @@ public class CommonController {
 
 
     @PostMapping("/upload")
+    @ApiOperation("文件上传-固定模板写法")
     public Response<String> upload(MultipartFile file) {
         return ResponseUtil.success(commonService.upload(file));
     }

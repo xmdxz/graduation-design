@@ -13,12 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-/**
- * @Author YuanXin
- * @ClassName UserRepository
- * @Description
- * @Date 2022/8/28 11:56
- */
 
 @Service
 @AllArgsConstructor

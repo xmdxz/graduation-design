@@ -8,12 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName CommentMapper
- * @Description TODO
- * @Date 2022/11/9 11:25
- */
+
 @Mapper
 public interface CommentMapper extends BaseMapper<Comment> {
     List<Comment> listById(@Param("id") String id, @Param("type") Type type);

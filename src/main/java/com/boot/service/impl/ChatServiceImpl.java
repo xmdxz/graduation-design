@@ -1,13 +1,11 @@
 package com.boot.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.boot.common.enums.OrderStatus;
 import com.boot.common.exception.ServiceException;
 import com.boot.dal.dao.Chat;
 import com.boot.dal.dao.Goods;
 import com.boot.dal.dao.Order;
 import com.boot.dal.dao.User;
-import com.boot.dal.mapper.ChatMapper;
 import com.boot.dal.repository.ChatRepository;
 import com.boot.dal.repository.GoodsRepository;
 import com.boot.dal.repository.OrderRepository;
@@ -23,10 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @version 1.0
- * @date 2022/11/7 10:03
- */
+
 @Service
 @AllArgsConstructor
 public class ChatServiceImpl implements ChatService {
@@ -42,7 +37,7 @@ public class ChatServiceImpl implements ChatService {
     public List<Chat> getChatList(String goodsId) {
 
         List<Chat> chatList = chatRepository.chatList(goodsId);
-        chatList.forEach(e->{
+        chatList.forEach(e -> {
             User user = Optional.ofNullable(userRepository.getById(e.getUserId()))
                     .orElseThrow(() -> new ServiceException("用户不存在"));
             UserBasicInformation userInfo = userWrapper.toBasic(user);

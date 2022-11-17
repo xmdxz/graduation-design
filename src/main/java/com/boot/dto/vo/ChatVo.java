@@ -5,11 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @author Shubo_Yang
- * @version 1.0
- * @date 2022/11/15 12:45
- */
+
 @Data
 public class ChatVo {
     @ApiModelProperty(value = "商品名称")

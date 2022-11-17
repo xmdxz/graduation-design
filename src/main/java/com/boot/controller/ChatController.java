@@ -13,17 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @author Shubo_Yang
- * @version 1.0
- * @date 2022/11/7 10:55
- */
-@AllArgsConstructor
+@AllArgsConstructor // 自动生成构造方法
 @RestController
 @Api(tags = "聊天相关")
-@RequestMapping("/chat")
+@RequestMapping("/chat") // 表明该类用于处理请求路径开头为/chat的请求
 public class ChatController {
 
+    // 这种使用了spring的构造注入方法，因为使用了自动生成构造方法的注解,得以生效
     private final ChatService chatService;
 
     @GetMapping(value = "/chatList/{goodsId}")
@@ -46,13 +42,13 @@ public class ChatController {
 
     @PostMapping
     @ApiOperation("插入聊天")
-    public Response<Boolean> insertChat(@RequestBody  Chat chat){
+    public Response<Boolean> insertChat(@RequestBody Chat chat) {
         return ResponseUtil.success(chatService.insertNewChat(chat));
     }
 
     @PostMapping(value = "/buy")
     @ApiOperation("购买")
-    public Response<Integer> buy(@RequestBody Order order){
+    public Response<Integer> buy(@RequestBody Order order) {
         return ResponseUtil.success(chatService.buy(order));
     }
 }

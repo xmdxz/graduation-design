@@ -6,12 +6,7 @@ import com.boot.dal.dao.Goods;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @Author YuanXin
- * @ClassName GoodsMapper
- * @Description TODO
- * @Date 2022/11/9 11:25
- */
+
 @Mapper
 public interface GoodsMapper extends BaseMapper<Goods> {
     IPage<Goods> pageOwn(IPage<Goods> page, @Param("userId") String userId, @Param("keywords") String keywords);

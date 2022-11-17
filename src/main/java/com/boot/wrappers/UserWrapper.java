@@ -8,12 +8,6 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName UserWrapper
- * @Description TODO
- * @Date 2022/9/6 14:54
- */
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public abstract class UserWrapper {

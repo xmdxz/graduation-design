@@ -5,12 +5,6 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
-/**
- * @Author YuanXin
- * @ClassName PhoneRegistryRo
- * @Description TODO
- * @Date 2022/11/8 16:42
- */
 
 @Data
 public class PhoneRegistryRo {

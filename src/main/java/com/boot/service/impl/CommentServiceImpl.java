@@ -9,11 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author Shubo_Yang
- * @version 1.0
- * @date 2022/11/7 14:43
- */
+
 @Service
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements CommentService {
     @Override

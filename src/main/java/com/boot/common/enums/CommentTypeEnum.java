@@ -3,15 +3,13 @@ package com.boot.common.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * @author Shubo_Yang
- * @version 1.0
- * @date 2022/11/7 14:47
- */
 @AllArgsConstructor
 @Getter
 public enum CommentTypeEnum {
-    GOODS("goods"),
-    DYNAMIC("dynamic");
+    /**
+     * 业务类型枚举，
+     */
+    GOODS("商品"),
+    DYNAMIC("动态");
     String code;
 }

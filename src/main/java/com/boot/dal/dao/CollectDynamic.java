@@ -6,12 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * @Author YuanXin
- * @ClassName CollectDynamic
- * @Description TODO
- * @Date 2022/11/11 16:52
- */
+
 @ApiModel(value = "collect_dynamic")
 @Data
 @TableName(value = "`collect_dynamic`")

@@ -8,12 +8,6 @@ import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName PublishGoodsRo
- * @Description TODO
- * @Date 2022/11/13 13:47
- */
 
 @Data
 public class PublishGoodsRo {

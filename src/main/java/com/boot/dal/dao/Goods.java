@@ -13,12 +13,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName Goods
- * @Description TODO
- * @Date 2022/11/9 11:25
- */
+
 @ApiModel(value = "goods")
 @Data
 @TableName(value = "`goods`", autoResultMap = true)

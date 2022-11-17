@@ -4,12 +4,6 @@ import com.boot.dto.common.vo.UserBasicInformation;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * @Author YuanXin
- * @ClassName UserDataVo
- * @Description TODO
- * @Date 2022/11/9 9:48
- */
 
 @Data
 public class UserDataVo {

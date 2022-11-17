@@ -13,16 +13,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * @Author YuanXin
- * @ClassName SwaggerConfig
- * @Description TODO
- * @Date 2022/8/27 19:49
+ * swagger配置，固定模板配置
  */
-
-
 @Configuration
-@ConfigurationProperties(prefix = "swagger")
-@EnableOpenApi
+@ConfigurationProperties(prefix = "swagger") // 会将application.yml配置文件中以swagger开头的配置自动注入到对应字段
+@EnableOpenApi // 开启swagger功能
 @Data
 public class SwaggerConfig {
 

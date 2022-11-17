@@ -1,9 +1,7 @@
 package com.boot.dal.dao;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.boot.common.dao.BaseTimeDeleteEntity;
-import com.boot.common.enums.EndpointEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,12 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-/**
- * @Author YuanXin
- * @ClassName User
- * @Description
- * @Date 2022/8/28 11:46
- */
+
 @ApiModel(value = "`user`")
 @Schema
 @Data
@@ -47,10 +40,6 @@ public class User extends BaseTimeDeleteEntity {
     @ApiModelProperty(value = "手机号")
     @Schema(description = "手机号")
     private String phone;
-
-    @ApiModelProperty("登录平台")
-    @TableField(exist = false)
-    private EndpointEnum endpoint;
 
     /**
      * 头像

@@ -13,12 +13,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-/**
- * @Author YuanXin
- * @ClassName LoginServiceImpl
- * @Description TODO
- * @Date 2022/9/5 18:11
- */
 
 @Service
 @AllArgsConstructor

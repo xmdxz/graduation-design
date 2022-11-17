@@ -7,12 +7,7 @@ import com.boot.dto.vo.CollectDynamicPageVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @Author YuanXin
- * @ClassName CollectDynamicMapper
- * @Description TODO
- * @Date 2022/11/11 16:52
- */
+
 @Mapper
 public interface CollectDynamicMapper extends BaseMapper<CollectDynamic> {
     IPage<CollectDynamicPageVo> pageCollectByUserId(IPage<CollectDynamicPageVo> page, @Param("id") String id);

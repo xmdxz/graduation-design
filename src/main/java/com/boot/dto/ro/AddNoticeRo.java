@@ -7,12 +7,6 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-/**
- * @Author YuanXin
- * @ClassName AddNoticeRo
- * @Description TODO
- * @Date 2022/11/14 16:47
- */
 
 @Data
 public class AddNoticeRo {

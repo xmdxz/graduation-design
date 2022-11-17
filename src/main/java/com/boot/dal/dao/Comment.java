@@ -9,12 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * @Author YuanXin
- * @ClassName Comment
- * @Description TODO
- * @Date 2022/11/9 11:25
- */
+
 @ApiModel(value = "`comment`")
 @Data
 @TableName(value = "`comment`")

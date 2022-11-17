@@ -6,12 +6,6 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @Author YuanXin
- * @ClassName CollectDynamicPageVo
- * @Description TODO
- * @Date 2022/11/11 16:47
- */
 
 @Data
 public class CollectDynamicPageVo {

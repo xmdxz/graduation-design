@@ -13,12 +13,6 @@ import com.boot.wrappers.DynamicWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-/**
- * @Author YuanXin
- * @ClassName DynamicServiceImpl
- * @Description TODO
- * @Date 2022/11/13 15:54
- */
 
 @Service
 @AllArgsConstructor

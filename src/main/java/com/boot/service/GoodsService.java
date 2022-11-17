@@ -7,12 +7,7 @@ import com.boot.dto.ro.PublishGoodsRo;
 import com.boot.dto.vo.GoodsDetailVo;
 import com.boot.dto.vo.GoodsPageVo;
 
-/**
- * @Author YuanXin
- * @ClassName GoodsService
- * @Description TODO
- * @Date 2022/11/12 16:00
- */
+
 public interface GoodsService {
     PageResult<GoodsPageVo> page(IPage<Goods> page, String keywords);
 
