@@ -1,8 +1,8 @@
 package com.boot.service;
 
-import com.boot.dto.common.ro.PhoneLoginRo;
-import com.boot.dto.ro.BackLoginRo;
-import com.boot.dto.ro.PhoneRegistryRo;
+import com.boot.dto.BackLoginRo;
+import com.boot.dto.PhoneLoginRo;
+import com.boot.dto.PhoneRegistryRo;
 
 
 public interface LoginService {

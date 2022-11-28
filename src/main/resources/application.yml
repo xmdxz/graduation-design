@@ -62,17 +62,15 @@ swagger:
 #  开启swagger
   enable: true
 #  应用名称
-  name: 数码二手交易系统
+  name: 演出购票系统
 #  一些无关紧要的配置
   personUrl: http://localhost:10086
   email: 1
-  title: 数码二手交易系统
-  description: 数码二手交易系统
+  title: 演出购票系统
+  description: 演出购票系统
   version: 1.0.0
 
 logging:
-#  日志配置文件的所在位置
-  config: classpath:config/log4j2.xml
   level:
 #    定义我们项目的自己的包下的日志级别为debug
     com.boot: debug

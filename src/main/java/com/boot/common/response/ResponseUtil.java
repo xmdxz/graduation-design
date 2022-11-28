@@ -1,6 +1,6 @@
 package com.boot.common.response;
 
-import com.boot.common.exception.ServiceException;
+import com.boot.exception.ServiceException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

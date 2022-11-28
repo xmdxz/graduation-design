@@ -2,9 +2,9 @@ package com.boot.controller;
 
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
-import com.boot.dto.common.ro.PhoneLoginRo;
-import com.boot.dto.ro.BackLoginRo;
-import com.boot.dto.ro.PhoneRegistryRo;
+import com.boot.dto.BackLoginRo;
+import com.boot.dto.PhoneLoginRo;
+import com.boot.dto.PhoneRegistryRo;
 import com.boot.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
