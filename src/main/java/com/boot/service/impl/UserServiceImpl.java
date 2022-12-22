@@ -1,10 +1,15 @@
 package com.boot.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.boot.common.request.page.PageQuery;
+import com.boot.common.request.page.PageResult;
 import com.boot.dao.*;
 import com.boot.dto.*;
 import com.boot.enums.CouponStatus;
+import com.boot.enums.OrderStatus;
 import com.boot.enums.Type;
 import com.boot.exception.ServiceException;
 import com.boot.service.UserService;
@@ -28,6 +33,7 @@ public class UserServiceImpl implements UserService {
     private final CommentMapper commentMapper;
 
     private final FeedbackMapper feedbackMapper;
+    private final OrderMapper orderMapper;
 
     @Override
     public UserBasicInformation getUserBasic(String userId) {
@@ -101,6 +107,47 @@ public class UserServiceImpl implements UserService {
     public Boolean deleteCollect(String userId, String collectId) {
         getUserBasic(userId);
         collectMapper.deleteById(collectId);
+        return true;
+    }
+
+    @Override
+    public PageResult<MineOrderVo> orders(MineOrderRo ro) {
+        IPage<MineOrderVo> page = orderMapper.getMineOrders(PageQuery.getPage(ro.getPage()), ro);
+        return PageResult.buildResult(page);
+    }
+
+    @Override
+    public PageResult<MineCommentVo> comments(MineCommentRo ro) {
+        UserBasicInformation userInfo = getUserBasic(ro.getUserId());
+        IPage<MineCommentVo> page = commentMapper.getMineComment(PageQuery.getPage(ro.getPage()), ro);
+        page.getRecords().forEach(e -> e.setUserInfo(userInfo));
+        return PageResult.buildResult(page);
+    }
+
+    @Override
+    public PageResult<MineCollectVo> collects(MineCollectRo ro) {
+        IPage<MineCollectVo> page = collectMapper.getMineColleco(PageQuery.getPage(ro.getPage()), ro);
+        return PageResult.buildResult(page);
+    }
+
+    @Override
+    public Boolean pay(String orderId) {
+        Order order = orderMapper.selectById(orderId);
+        if (ObjectUtil.equal(order.getStatus(), OrderStatus.FINISHED)) {
+            throw new ServiceException("订单已经支付");
+        }
+        order.setStatus(OrderStatus.FINISHED);
+        orderMapper.updateById(order);
+        return true;
+    }
+
+    @Override
+    public Boolean cancelOrder(String orderId) {
+        Order order = orderMapper.selectById(orderId);
+        if (ObjectUtil.isNull(order)) {
+            throw new ServiceException("订单已取消");
+        }
+        orderMapper.deleteById(order);
         return true;
     }
 }

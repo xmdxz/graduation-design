@@ -1,10 +1,9 @@
 package com.boot.controller;
 
+import com.boot.common.request.page.PageResult;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
-import com.boot.dto.FeedBackRo;
-import com.boot.dto.UserBasicInformation;
-import com.boot.dto.UserDataVo;
+import com.boot.dto.*;
 import com.boot.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -71,5 +70,36 @@ public class UserController {
     @ApiOperation("删除收藏")
     public Response<Boolean> deleteCollect(String userId, String collectId) {
         return ResponseUtil.success(userService.deleteCollect(userId, collectId));
+    }
+
+    @PostMapping("/orders")
+    @ApiOperation("获取订单")
+    public Response<PageResult<MineOrderVo>> orders(@RequestBody MineOrderRo ro) {
+        return ResponseUtil.success(userService.orders(ro));
+    }
+
+    @PostMapping("/comment")
+    @ApiOperation("获取我的评论")
+    public Response<PageResult<MineCommentVo>> comments(@RequestBody MineCommentRo ro) {
+        return ResponseUtil.success(userService.comments(ro));
+    }
+
+
+    @PostMapping("/collect")
+    @ApiOperation("获取我的收藏")
+    public Response<PageResult<MineCollectVo>> collects(@RequestBody MineCollectRo ro) {
+        return ResponseUtil.success(userService.collects(ro));
+    }
+
+    @GetMapping("/order/pay")
+    @ApiOperation("未支付订单支付")
+    public Response<Boolean> pay(String orderId) {
+        return ResponseUtil.success(userService.pay(orderId));
+    }
+
+    @GetMapping("/order/cancel")
+    @ApiOperation("取消订单")
+    public Response<Boolean> orderCancel(String orderId) {
+        return ResponseUtil.success(userService.cancelOrder(orderId));
     }
 }

@@ -134,4 +134,15 @@
       user_id = #{userId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="getMineOrders" resultType="com.boot.dto.MineOrderVo">
+    select o.id,o.status,s.name,s.start_time,s.stop_time,s.price,s.img_url,o.amount
+    from `order` as o
+           left join `show` as s on o.movie_id = s.id
+    where o.is_deleted = 0 and o.user_id = #{ro.userId,jdbcType=VARCHAR}
+    <if test="ro.status != null">
+      and o.status = #{ro.status}
+    </if>
+    order by o.create_time desc
+    </select>
 </mapper>

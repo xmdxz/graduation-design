@@ -18,4 +18,15 @@
     <!--@mbg.generated-->
     id, is_deleted, create_time, update_time, other_id, `type`, content, pid, user_id
   </sql>
+
+  <select id="getMineComment" resultType="com.boot.dto.MineCommentVo">
+    select c.id, c.content, s.name, s.start_time, s.stop_time, s.price, s.img_url
+    from comment as c
+           left join `show` as s
+                     on s.id = c.other_id
+    where c.is_deleted = 0
+      and c.type = #{ro.type}
+      and c.user_id = #{ro.userId,jdbcType=VARCHAR}
+    order by c.create_time desc
+  </select>
 </mapper>

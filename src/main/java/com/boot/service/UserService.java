@@ -1,8 +1,7 @@
 package com.boot.service;
 
-import com.boot.dto.FeedBackRo;
-import com.boot.dto.UserBasicInformation;
-import com.boot.dto.UserDataVo;
+import com.boot.common.request.page.PageResult;
+import com.boot.dto.*;
 
 
 public interface UserService {
@@ -22,4 +21,14 @@ public interface UserService {
     Boolean deleteComment(String userId, String commentId);
 
     Boolean deleteCollect(String userId, String collectId);
+
+    PageResult<MineOrderVo> orders(MineOrderRo ro);
+
+    PageResult<MineCommentVo> comments(MineCommentRo ro);
+
+    PageResult<MineCollectVo> collects(MineCollectRo ro);
+
+    Boolean pay(String orderId);
+
+    Boolean cancelOrder(String orderId);
 }

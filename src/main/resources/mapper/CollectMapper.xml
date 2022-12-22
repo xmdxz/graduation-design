@@ -16,4 +16,15 @@
     <!--@mbg.generated-->
     id, is_deleted, create_time, update_time, type_id, user_id, `type`
   </sql>
+
+  <select id="getMineColleco" resultType="com.boot.dto.MineCollectVo">
+    select s.*
+    from collect as c
+           left join `show` as s
+                     on c.type_id = s.id
+    where c.is_deleted = 0
+      and c.type = #{ro.type}
+      and c.user_id = #{ro.userId,jdbcType=VARCHAR}
+    order by c.create_time desc
+  </select>
 </mapper>

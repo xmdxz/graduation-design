@@ -69,7 +69,6 @@ swagger:
   title: 演出购票系统
   description: 演出购票系统
   version: 1.0.0
-
 logging:
   level:
 #    定义我们项目的自己的包下的日志级别为debug
