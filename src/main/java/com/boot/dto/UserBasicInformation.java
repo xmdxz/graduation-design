@@ -32,4 +32,7 @@ public class UserBasicInformation {
 
     @ApiModelProperty(value = "个人简介")
     private String mark;
+
+    @ApiModelProperty(value = "ip地址")
+    private String ipAddress;
 }

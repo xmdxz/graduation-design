@@ -3,6 +3,7 @@ package com.boot.controller;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
 import com.boot.dto.BackLoginRo;
+import com.boot.dto.ChangePasswordRo;
 import com.boot.dto.PhoneLoginRo;
 import com.boot.dto.PhoneRegistryRo;
 import com.boot.service.LoginService;
@@ -34,6 +35,12 @@ public class LoginController {
         return ResponseUtil.success(loginService.phone(ro));
     }
 
+
+    @PostMapping(value = "/change/password")
+    @ApiOperation("修改密码")
+    public Response<Boolean> changePassword(@Validated @RequestBody ChangePasswordRo ro) {
+        return ResponseUtil.success(loginService.changePassword(ro));
+    }
 
     @PostMapping(value = "/registry")
     @ApiOperation("注册")

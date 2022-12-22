@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.dao.SwiperMapper">
+  <resultMap id="BaseResultMap" type="com.boot.dto.Swiper">
+    <!--@mbg.generated-->
+    <!--@Table swiper-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="show_id" jdbcType="VARCHAR" property="showId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, show_id, create_time, `status`
+  </sql>
+</mapper>

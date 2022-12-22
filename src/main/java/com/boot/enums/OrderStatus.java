@@ -7,6 +7,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum OrderStatus {
+
+    WAIT_PAYED("待支付"),
     /**
      * 订单状态
      */

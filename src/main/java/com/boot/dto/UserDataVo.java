@@ -15,17 +15,11 @@ public class UserDataVo {
     @ApiModelProperty("收藏数")
     private Integer collect;
 
-    @ApiModelProperty("贴子数")
-    private Integer dynamic;
+    @ApiModelProperty("评论数")
+    private Integer comment;
 
-    @ApiModelProperty("我的发布")
-    private Integer publish;
-
-    @ApiModelProperty("我的卖出")
-    private Integer sold;
-
-    @ApiModelProperty("我的买入")
-    private Integer buy;
+    @ApiModelProperty("可用优惠券")
+    private Integer coupon;
 
 
 }

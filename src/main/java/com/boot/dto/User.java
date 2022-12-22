@@ -57,4 +57,8 @@ public class User extends BaseTimeDeleteEntity {
 
     @ApiModelProperty(value = "个人简介")
     private String mark;
+
+
+    @ApiModelProperty("ip地址")
+    private String ipAddress;
 }

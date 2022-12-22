@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.boot.dto.Order">
+    <!--@mbg.generated-->
+    <!--@Table `order`-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="movie_id" jdbcType="VARCHAR" property="movieId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, is_deleted, create_time, update_time, movie_id, `status`, amount, user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `order`
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from `order`
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.boot.dto.Order">
+    <!--@mbg.generated-->
+    insert into `order` (id, is_deleted, create_time, 
+      update_time, movie_id, `status`, 
+      amount, user_id)
+    values (#{id,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BOOLEAN}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{movieId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boot.dto.Order">
+    <!--@mbg.generated-->
+    insert into `order`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="movieId != null">
+        movie_id,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="movieId != null">
+        #{movieId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boot.dto.Order">
+    <!--@mbg.generated-->
+    update `order`
+    <set>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="movieId != null">
+        movie_id = #{movieId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boot.dto.Order">
+    <!--@mbg.generated-->
+    update `order`
+    set is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      movie_id = #{movieId,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

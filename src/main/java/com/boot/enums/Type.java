@@ -3,15 +3,13 @@ package com.boot.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-
-@Getter
 @AllArgsConstructor
+@Getter
 public enum Type {
     /**
-     * 此项目中用于区分评论的类型
+     * 业务类型枚举，
      */
-    ORDER("订单"),
-    GOODS("商品"),
-    DYNAMIC("帖子");
-    private String mark;
+    MOVIE("电影"),
+    DYNAMIC("动态");
+    String code;
 }
