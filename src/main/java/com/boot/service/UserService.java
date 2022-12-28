@@ -31,4 +31,8 @@ public interface UserService {
     Boolean pay(String orderId);
 
     Boolean cancelOrder(String orderId);
+
+    CouponListVo coupons(String userId);
+
+    Boolean exchangeCoupon(String userId, String code);
 }

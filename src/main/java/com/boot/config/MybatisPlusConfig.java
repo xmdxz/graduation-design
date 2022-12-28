@@ -1,10 +1,17 @@
 package com.boot.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.apache.ibatis.reflection.MetaObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
+import java.sql.Timestamp;
 
 
 /**
@@ -35,4 +42,37 @@ public class MybatisPlusConfig {
         return interceptor;
     }
 
+    /**
+     * 插入更新等打印个日志
+     */
+    @Component
+    public static class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
+
+        private static final Logger log = LoggerFactory.getLogger(MybatisPlusMetaObjectHandler.class);
+
+        private static final String CREATE_TIME = "createTime";
+
+        private static final String UPDATE_TIME = "updateTime";
+
+        @Override
+        public void insertFill(MetaObject metaObject) {
+            log.info("start insert fill ...");
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+            if (metaObject.hasSetter(CREATE_TIME)) {
+                this.fillStrategy(metaObject, CREATE_TIME, now);
+            }
+            if (metaObject.hasSetter(UPDATE_TIME)) {
+                this.fillStrategy(metaObject, UPDATE_TIME, now);
+            }
+        }
+
+        @Override
+        public void updateFill(MetaObject metaObject) {
+            log.info("start update fill ...");
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+            if (metaObject.hasSetter(UPDATE_TIME)) {
+                this.strictUpdateFill(metaObject, UPDATE_TIME, Timestamp.class, now);
+            }
+        }
+    }
 }
