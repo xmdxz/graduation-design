@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -38,13 +37,13 @@ public class CouponListVo {
          * 优惠券有效期开始
          */
         @ApiModelProperty(value = "优惠券有效期开始")
-        private Timestamp startTime;
+        private Long startTime;
 
         /**
          * 优惠券有效期结束
          */
         @ApiModelProperty(value = "优惠券有效期结束")
-        private Timestamp endTime;
+        private Long endTime;
 
         /**
          * 优惠券金额

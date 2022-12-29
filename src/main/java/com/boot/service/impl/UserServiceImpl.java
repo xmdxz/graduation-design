@@ -2,6 +2,7 @@ package com.boot.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -170,7 +171,9 @@ public class UserServiceImpl implements UserService {
                 expiredUpdate.add(e);
             }
             CouponListVo.CouponVo instead = new CouponListVo.CouponVo();
-            BeanUtil.copyProperties(e, instead);
+            BeanUtil.copyProperties(e, instead, "startTime", "endTime");
+            instead.setStartTime(e.getStartTime().getTime());
+            instead.setEndTime(e.getEndTime().getTime());
             if (ObjectUtil.equal(e.getStatus(), CouponStatus.NORMAL)) {
                 normal.add(instead);
             } else {
@@ -204,6 +207,31 @@ public class UserServiceImpl implements UserService {
         }
 
         return true;
+    }
+
+    @Override
+    public PageResult<UserPageVo> page(IPage<User> page, String keywords) {
+        IPage<User> userPage = userRepository.page(page, Wrappers.<User>lambdaQuery()
+                .like(CharSequenceUtil.isNotBlank(keywords), User::getPhone, keywords)
+                .or(CharSequenceUtil.isNotBlank(keywords), wrappers -> {
+                    wrappers.like(User::getUsername, keywords);
+                })
+                .orderByDesc(User::getCreateTime));
+        List<UserPageVo> userPageVos = BeanUtil.copyToList(userPage.getRecords(), UserPageVo.class);
+        return PageResult.buildResult(userPage.getTotal(), userPageVos);
+    }
+
+    @Override
+    public Boolean add(AddUserRo ro) {
+        User dao = userRepository.getByPhone(ro.getPhone());
+        if (ObjectUtil.isNotNull(dao)) {
+            throw new ServiceException("该手机号已存在");
+        }
+        User user = new User();
+        user.setPassword(ro.getPassword());
+        user.setPhone(ro.getPhone());
+        user.setUsername(ro.getUsername());
+        return userRepository.save(user);
     }
 }
 

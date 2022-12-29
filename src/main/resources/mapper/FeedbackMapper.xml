@@ -16,4 +16,9 @@
     id, is_deleted, create_time, update_time, content, user_id
   </sql>
 
+  <select id="page" resultType="com.boot.dto.FeedBackVo">
+    select f.id,content,username,phone,f.create_time from feedback as f left join user u on f.user_id = u.id
+    where f.is_deleted = 0
+    order by f.create_time desc
+    </select>
 </mapper>
