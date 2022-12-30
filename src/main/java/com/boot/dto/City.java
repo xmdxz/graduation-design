@@ -26,4 +26,10 @@ public class City extends BaseTimeDeleteEntity {
      */
     @ApiModelProperty(value = "城市编码")
     private String cityCode;
+
+    @ApiModelProperty(value = "是否热门")
+    private int isHot;
+
+    @ApiModelProperty(value = "拼音")
+    private String spell;
 }
