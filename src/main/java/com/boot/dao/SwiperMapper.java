@@ -2,7 +2,10 @@ package com.boot.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.boot.dto.Swiper;
+import com.boot.dto.SwiperVo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @Author YuanXin
@@ -12,4 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SwiperMapper extends BaseMapper<Swiper> {
+
+    List<SwiperVo> querySwiperList();
 }

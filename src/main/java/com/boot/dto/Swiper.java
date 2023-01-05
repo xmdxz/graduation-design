@@ -27,4 +27,6 @@ public class Swiper extends BaseTimeDeleteEntity {
      */
     @ApiModelProperty(value = "是否展示（0不展示，1展示）")
     private Byte status;
+   
+    private String swiperImg;
 }
