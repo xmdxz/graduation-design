@@ -1,5 +1,6 @@
 package com.boot.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.boot.common.request.page.PageResult;
 import com.boot.dto.*;
 
@@ -31,4 +32,14 @@ public interface UserService {
     Boolean pay(String orderId);
 
     Boolean cancelOrder(String orderId);
+
+    CouponListVo coupons(String userId);
+
+    Boolean exchangeCoupon(String userId, String code);
+
+
+    PageResult<UserPageVo> page(IPage<User> page, String keywords);
+
+    Boolean add(AddUserRo ro);
+
 }

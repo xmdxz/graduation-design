@@ -1,5 +1,6 @@
 package com.boot.dto;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.boot.enums.CouponStatus;
 import io.swagger.annotations.ApiModel;
@@ -60,4 +61,12 @@ public class Coupon extends BaseTimeDeleteEntity {
      */
     @ApiModelProperty(value = "描述信息")
     private String mark;
+
+    public Boolean isExpired() {
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        if (ObjectUtil.isNull(startTime) || ObjectUtil.isNull(endTime)) {
+            return true;
+        }
+        return now.compareTo(endTime) >= 0;
+    }
 }

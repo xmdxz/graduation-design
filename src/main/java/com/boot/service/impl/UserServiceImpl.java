@@ -1,7 +1,10 @@
 package com.boot.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.boot.common.request.page.PageQuery;
@@ -17,6 +20,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -149,6 +154,84 @@ public class UserServiceImpl implements UserService {
         }
         orderMapper.deleteById(order);
         return true;
+    }
+
+    @Override
+    public CouponListVo coupons(String userId) {
+        getUserBasic(userId);
+        List<Coupon> coupons = couponMapper.selectList(Wrappers.<Coupon>lambdaQuery()
+                .eq(Coupon::getUserId, userId)
+                .orderByDesc(Coupon::getUpdateTime));
+        List<Coupon> expiredUpdate = new ArrayList<>();
+        List<CouponListVo.CouponVo> normal = new ArrayList<>();
+        List<CouponListVo.CouponVo> other = new ArrayList<>();
+        coupons.forEach(e -> {
+            if (Boolean.TRUE.equals(e.isExpired()) && ObjectUtil.equal(e.getStatus(), CouponStatus.NORMAL)) {
+                e.setStatus(CouponStatus.EXPIRED);
+                expiredUpdate.add(e);
+            }
+            CouponListVo.CouponVo instead = new CouponListVo.CouponVo();
+            BeanUtil.copyProperties(e, instead, "startTime", "endTime");
+            instead.setStartTime(e.getStartTime().getTime());
+            instead.setEndTime(e.getEndTime().getTime());
+            if (ObjectUtil.equal(e.getStatus(), CouponStatus.NORMAL)) {
+                normal.add(instead);
+            } else {
+                other.add(instead);
+            }
+        });
+        if (CollUtil.isNotEmpty(expiredUpdate)) {
+            expiredUpdate.forEach(couponMapper::updateById);
+        }
+        CouponListVo result = new CouponListVo();
+        result.setNormal(normal);
+        result.setOther(other);
+        return result;
+    }
+
+    @Override
+    public Boolean exchangeCoupon(String userId, String code) {
+        Coupon coupon = couponMapper.selectById(code);
+        if (ObjectUtil.isNull(coupon)) {
+            throw new ServiceException("优惠券不存在");
+        }
+        if (Boolean.TRUE.equals(coupon.isExpired()) && ObjectUtil.equal(coupon.getStatus(), CouponStatus.NORMAL)) {
+            coupon.setStatus(CouponStatus.EXPIRED);
+            couponMapper.updateById(coupon);
+        }
+        if (StrUtil.isNotBlank(coupon.getUserId())) {
+            throw new ServiceException("该优惠券已被兑换");
+        }
+        if (ObjectUtil.notEqual(coupon.getStatus(), CouponStatus.NORMAL)) {
+            throw new ServiceException("该优惠券" + coupon.getStatus().getMark());
+        }
+
+        return true;
+    }
+
+    @Override
+    public PageResult<UserPageVo> page(IPage<User> page, String keywords) {
+        IPage<User> userPage = userRepository.page(page, Wrappers.<User>lambdaQuery()
+                .like(CharSequenceUtil.isNotBlank(keywords), User::getPhone, keywords)
+                .or(CharSequenceUtil.isNotBlank(keywords), wrappers -> {
+                    wrappers.like(User::getUsername, keywords);
+                })
+                .orderByDesc(User::getCreateTime));
+        List<UserPageVo> userPageVos = BeanUtil.copyToList(userPage.getRecords(), UserPageVo.class);
+        return PageResult.buildResult(userPage.getTotal(), userPageVos);
+    }
+
+    @Override
+    public Boolean add(AddUserRo ro) {
+        User dao = userRepository.getByPhone(ro.getPhone());
+        if (ObjectUtil.isNotNull(dao)) {
+            throw new ServiceException("该手机号已存在");
+        }
+        User user = new User();
+        user.setPassword(ro.getPassword());
+        user.setPhone(ro.getPhone());
+        user.setUsername(ro.getUsername());
+        return userRepository.save(user);
     }
 }
 

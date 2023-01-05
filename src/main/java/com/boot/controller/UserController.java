@@ -102,4 +102,16 @@ public class UserController {
     public Response<Boolean> orderCancel(String orderId) {
         return ResponseUtil.success(userService.cancelOrder(orderId));
     }
+
+    @GetMapping("/coupon")
+    @ApiOperation("获取优惠券")
+    public Response<CouponListVo> coupons(String userId) {
+        return ResponseUtil.success(userService.coupons(userId));
+    }
+
+    @GetMapping("/coupon/exchange")
+    @ApiOperation("兑换优惠券")
+    public Response<Boolean> exchangeCoupon(String userId, String code) {
+        return ResponseUtil.success(userService.exchangeCoupon(userId, code));
+    }
 }
