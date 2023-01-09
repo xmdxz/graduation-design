@@ -1,6 +1,7 @@
 package com.boot.dto;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -34,12 +35,14 @@ public class Show extends BaseTimeDeleteEntity {
      * 演出开始时间
      */
     @ApiModelProperty(value = "演出开始时间")
+    @JsonFormat(pattern = "yyyy年MM月dd日 HH时mm分")
     private Date startTime;
 
     /**
      * 演出结束时间
      */
     @ApiModelProperty(value = "演出结束时间")
+    @JsonFormat(pattern = "yyyy年MM月dd日 HH时mm分")
     private Date stopTime;
 
     /**
@@ -85,18 +88,6 @@ public class Show extends BaseTimeDeleteEntity {
     private String joinRule;
 
     /**
-     * 退换票规则
-     */
-    @ApiModelProperty(value = "退换票规则")
-    private String refundRule;
-
-    /**
-     * 实名购票规则
-     */
-    @ApiModelProperty(value = "实名购票规则")
-    private String realNameRule;
-
-    /**
      * 发票说明
      */
     @ApiModelProperty(value = "发票说明")
@@ -107,4 +98,7 @@ public class Show extends BaseTimeDeleteEntity {
      */
     @ApiModelProperty(value = "观影须知")
     private String viewRule;
+
+    @ApiModelProperty("观影地点")
+    private String showPlace;
 }

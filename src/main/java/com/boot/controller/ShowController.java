@@ -39,4 +39,8 @@ public class ShowController {
         return ResponseUtil.success(PageResult.buildResult(page));
     }
 
+    @GetMapping("getShowDetail")
+    public Response<Show> getShowDetail(String id) {
+        return ResponseUtil.success(showService.getById(id));
+    }
 }
