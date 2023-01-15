@@ -15,7 +15,6 @@ public enum CouponStatus {
 
     NORMAL("正常"),
     EXPIRED("已过期"),
-    
     USED("已使用");
 
     private String mark;

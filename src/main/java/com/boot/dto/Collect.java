@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.boot.enums.Type;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @Author YuanXin
@@ -15,6 +17,8 @@ import lombok.Data;
 @ApiModel(value = "`collect`")
 @Data
 @TableName(value = "`collect`")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Collect extends BaseTimeDeleteEntity {
 
     /**

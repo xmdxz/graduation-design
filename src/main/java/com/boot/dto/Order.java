@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @Author YuanXin
@@ -41,4 +42,10 @@ public class Order extends BaseTimeDeleteEntity {
      */
     @ApiModelProperty(value = "购买人")
     private String userId;
+
+    @ApiModelProperty("支付时间")
+    private Date payTime;
+
+    @ApiModelProperty("支付宝订单号")
+    private String alipayId;
 }
