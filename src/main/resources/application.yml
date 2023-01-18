@@ -84,4 +84,4 @@ alipy:
   signType: RSA2
   format: JSON
   charset: UTF-8
-  notifyUrl:
+  notifyUrl: http://gfxpxf.natappfree.cc/pay/notify
