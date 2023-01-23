@@ -57,7 +57,7 @@ public class PayController {
         bizContent.set("timeout_express", "30m");
         alipayTradeWapPayRequest.setBizContent(bizContent.toString());
         alipayTradeWapPayRequest.setNotifyUrl(alipayProperty.getNotifyUrl());
-        String form = null;
+        String form;
         try {
             form = alipayClient.pageExecute(alipayTradeWapPayRequest).getBody();
         } catch (AlipayApiException e) {
