@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
 import com.boot.dto.Goods;
+import com.boot.dto.Invitation;
 import com.boot.dto.Vip;
 import com.boot.service.GoodsService;
 import com.boot.service.InvitationService;
@@ -52,6 +53,12 @@ public class VipController {
     @ApiOperation("使用兑换码")
     public Response useCode(String userId,String code){
         return ResponseUtil.result(invitationService.exchangeCode(userId, code));
+    }
+
+    @GetMapping("/code")
+    @ApiOperation("查看兑换码")
+    public Response<Invitation> getCode(String userId){
+        return ResponseUtil.success(invitationService.getInvitation(null,userId));
     }
 
 }

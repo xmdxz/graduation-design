@@ -44,6 +44,9 @@ public class InvitationServiceImpl extends ServiceImpl<InvitationMapper, Invitat
             invitation = createInvitation(vip);
             vipService.updateById(vip);
         }
+        if (ObjectUtil.isNotNull(goods)){
+            throw new ServiceException("您已经购买过激活码，请点击查看！");
+        }
         return invitation;
     }
 
