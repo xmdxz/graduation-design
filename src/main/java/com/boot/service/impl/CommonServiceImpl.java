@@ -45,6 +45,7 @@ public class CommonServiceImpl implements CommonService, ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         try {
             CLASS_PATH_IMAGES_PATH = new ClassPathResource("static" + CLASS_PATH_STATIC).getFile().getAbsolutePath();
+            System.out.println(CLASS_PATH_IMAGES_PATH);
         } catch (IOException e) {
             log.error(e.getMessage());
         }

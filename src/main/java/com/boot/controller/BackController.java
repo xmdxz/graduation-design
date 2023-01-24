@@ -4,10 +4,7 @@ import com.boot.common.request.page.PageQuery;
 import com.boot.common.request.page.PageResult;
 import com.boot.common.response.Response;
 import com.boot.common.response.ResponseUtil;
-import com.boot.dto.AddUserRo;
-import com.boot.dto.BackLoginRo;
-import com.boot.dto.FeedBackVo;
-import com.boot.dto.UserPageVo;
+import com.boot.dto.*;
 import com.boot.service.BackService;
 import com.boot.service.LoginService;
 import com.boot.service.UserService;
@@ -65,5 +62,24 @@ public class BackController {
     @ApiOperation("查看反馈")
     public Response<PageResult<FeedBackVo>> feedbackPage(PageQuery page) {
         return ResponseUtil.success(backService.feedBackPage(PageQuery.getPage(page)));
+    }
+
+
+    @PostMapping("/coupon/add")
+    @ApiOperation("添加优惠券")
+    public Response<Boolean> addCoupon(@RequestBody AddOrUpdateCoupon ro) {
+        return ResponseUtil.success(backService.addOrUpdateCoupon(ro));
+    }
+
+    @PostMapping("/coupon/page")
+    @ApiOperation("后台优惠券列表")
+    public Response<PageResult<CouponListVo.CouponVo>> backCouponBack(@RequestBody BackCouponRo ro) {
+        return ResponseUtil.success(backService.backCouponPage(ro));
+    }
+
+    @GetMapping("/coupon/delete")
+    @ApiOperation("删除优惠券")
+    public Response<Boolean> deleteCoupon(String id) {
+        return ResponseUtil.success(backService.deleteCoupon(id));
     }
 }

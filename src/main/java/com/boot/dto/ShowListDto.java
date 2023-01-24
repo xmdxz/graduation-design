@@ -14,4 +14,5 @@ public class ShowListDto extends PageQuery {
     private String showName;
     private String type;
     private String city;
+    private String author;
 }
