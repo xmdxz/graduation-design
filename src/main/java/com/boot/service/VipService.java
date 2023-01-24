@@ -12,7 +12,6 @@ public interface VipService extends IService<Vip> {
      * @param userId 用户id
 	 * @param source 注册成为Vip
      * @return boolean
-     * @date 2023/1/19 16:23
      */
     boolean registerVip(String userId, VipSource source);
 
@@ -21,8 +20,14 @@ public interface VipService extends IService<Vip> {
      * @param userId 用户
 	 * @param integral 积分
      * @return boolean
-     * @author Shubo_Yang
-     * @date 2023/1/19 16:35
      */
     boolean addIntegral(String userId,Integer integral);
+
+    /**
+     * 检查并且扣减积分
+     * @param userId
+	 * @param integral
+     * @return boolean
+     */
+    boolean checkAndReduce(String userId,Integer integral);
 }

@@ -35,4 +35,18 @@ public class VipServiceImpl extends ServiceImpl<VipMapper, Vip> implements VipSe
         String sql = "`integral`=`integral`+"+integral.toString();
         return update(null,Wrappers.<Vip>lambdaUpdate().eq(Vip::getUserId,userId).setSql(sql));
     }
+
+    @Override
+    public boolean checkAndReduce(String userId, Integer integral) {
+        List<Vip> vips = baseMapper.selectList(Wrappers.<Vip>lambdaQuery().eq(Vip::getUserId,userId));
+        if (CollectionUtil.isEmpty(vips)){
+            return false;
+        }
+        Vip vip = vips.get(0);
+        if (vip.getIntegral().compareTo(integral)<0){
+            return false;
+        }
+        vip.setIntegral(vip.getIntegral()-integral);
+        return baseMapper.updateById(vip)!=0;
+    }
 }
