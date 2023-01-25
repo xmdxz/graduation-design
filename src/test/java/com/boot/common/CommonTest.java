@@ -1,9 +1,6 @@
 package com.boot.common;
 
 
-import org.junit.jupiter.api.Test;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 /**
  * @Author YuanXin
  * @ClassName CommonTest
@@ -13,10 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class CommonTest {
 
-    @Test
-    void creatPassword() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        System.out.println(passwordEncoder.encode("123456"));
-    }
+    // @Test
+    // void creatPassword() {
+    //     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    //
+    //     System.out.println(passwordEncoder.encode("123456"));
+    // }
 }

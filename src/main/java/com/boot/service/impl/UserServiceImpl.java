@@ -205,7 +205,8 @@ public class UserServiceImpl implements UserService {
         if (ObjectUtil.notEqual(coupon.getStatus(), CouponStatus.NORMAL)) {
             throw new ServiceException("该优惠券" + coupon.getStatus().getMark());
         }
-
+        coupon.setUserId(userId);
+        couponMapper.updateById(coupon);
         return true;
     }
 
