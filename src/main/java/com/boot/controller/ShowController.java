@@ -86,7 +86,14 @@ public class ShowController {
     @PostMapping("addShow")
     @ApiOperation("添加演出")
     public Response<Boolean> addShow(@RequestBody Show show) {
-        showService.save(show);
+        show.setIsDeleted(0);
+        showService.saveOrUpdate(show);
         return ResponseUtil.success(Boolean.TRUE);
+    }
+
+    @GetMapping("deleteShow")
+    @ApiOperation("删除演出")
+    public Response<Boolean> deleteShow(String id) {
+        return ResponseUtil.success(showService.removeById(id));
     }
 }

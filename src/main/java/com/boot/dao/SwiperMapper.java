@@ -17,4 +17,6 @@ import java.util.List;
 public interface SwiperMapper extends BaseMapper<Swiper> {
 
     List<SwiperVo> querySwiperList();
+
+    List<SwiperVo> querySwiperListForManage();
 }
