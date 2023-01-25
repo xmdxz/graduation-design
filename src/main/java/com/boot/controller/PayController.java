@@ -12,8 +12,10 @@ import com.boot.config.AlipayProperty;
 import com.boot.dto.AlipayContent;
 import com.boot.dto.Order;
 import com.boot.enums.OrderStatus;
+import com.boot.enums.VipSource;
 import com.boot.exception.ServiceException;
 import com.boot.service.OrderService;
+import com.boot.service.VipService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +45,9 @@ public class PayController {
     OrderService orderService;
 
     @Resource
+    VipService vipService;
+
+    @Resource
     AlipayProperty alipayProperty;
 
     @GetMapping("payMoney")
@@ -55,6 +60,10 @@ public class PayController {
         bizContent.set("subject", "手机网站支付");
         bizContent.set("product_code", "QUICK_WAP_WAY");
         bizContent.set("timeout_express", "30m");
+        if (alipayContent.getOutTradeNo().contains("vip")){
+            String userId = alipayContent.getOutTradeNo().substring(3);
+            vipService.registerVip(userId, VipSource.PURCHASE);
+        }
         alipayTradeWapPayRequest.setBizContent(bizContent.toString());
         alipayTradeWapPayRequest.setNotifyUrl(alipayProperty.getNotifyUrl());
         String form;
@@ -82,6 +91,8 @@ public class PayController {
         updateWrapper.set(Order::getStatus, OrderStatus.FINISHED)
                 .set(Order::getAlipayId, param.get("trade_no"))
                 .eq(Order::getId, param.get("out_trade_no"));
+        Order order = orderService.getById(param.get("out_trade_no"));
+        vipService.addIntegral(order.getUserId(),Integer.valueOf(param.get("total_amount")));
         orderService.update(updateWrapper);
     }
 

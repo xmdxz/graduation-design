@@ -42,7 +42,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
                 coupon.setAmount(goods.getAmount());
                 coupon.setStatus(CouponStatus.NORMAL);
                 coupon.setStartTime(new Timestamp(System.currentTimeMillis()));
-                coupon.setEndTime(new Timestamp(System.currentTimeMillis()+1000*60*60*24*30));
+                coupon.setEndTime(new Timestamp(System.currentTimeMillis()-1000*60*60*24*30));
                 coupon.setMark(goods.getMark());
                 coupon.setName(goods.getName());
                 couponService.save(coupon);
