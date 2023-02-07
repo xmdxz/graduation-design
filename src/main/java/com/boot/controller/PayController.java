@@ -92,7 +92,7 @@ public class PayController {
                 .set(Order::getAlipayId, param.get("trade_no"))
                 .eq(Order::getId, param.get("out_trade_no"));
         Order order = orderService.getById(param.get("out_trade_no"));
-        vipService.addIntegral(order.getUserId(),Integer.valueOf(param.get("total_amount")));
+        vipService.addIntegral(order.getUserId(),Double.valueOf(String.valueOf(param.get("total_amount"))).intValue());
         orderService.update(updateWrapper);
     }
 
