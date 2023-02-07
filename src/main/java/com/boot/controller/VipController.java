@@ -33,8 +33,8 @@ public class VipController {
 
     @GetMapping
     @ApiOperation("获取会员信息")
-    public Response<Vip> getVipInfo(String userId){
-        return ResponseUtil.success(vipService.getOne(Wrappers.<Vip>lambdaQuery().eq(Vip::getUserId,userId),false));
+    public Response<Vip> getVipInfo(String userId) {
+        return ResponseUtil.success(vipService.getOne(Wrappers.<Vip>lambdaQuery().eq(Vip::getUserId, userId), false));
     }
 
     @GetMapping("/goods")

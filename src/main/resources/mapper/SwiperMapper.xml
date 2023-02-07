@@ -17,8 +17,23 @@
     <select id="querySwiperList" resultType="com.boot.dto.SwiperVo">
         select sp.id,
                sp.show_id    as showId,
-               sp.swiper_img as swiperImg
+               sp.swiper_img as swiperImg,
+               sh.name       as showName,
+               sp.status
         from swiper sp
-        where sp.status = 1;
+                 left join `show` sh on sh.id = sp.show_id
+        where sp.status = 1
+          and sp.is_deleted = 0;
+    </select>
+
+    <select id="querySwiperListForManage" resultType="com.boot.dto.SwiperVo">
+        select sp.id,
+               sp.show_id    as showId,
+               sp.swiper_img as swiperImg,
+               sh.name       as showName,
+               sp.status
+        from swiper sp
+                 left join `show` sh on sh.id = sp.show_id
+        where sp.is_deleted = 0;
     </select>
 </mapper>

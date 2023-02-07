@@ -35,14 +35,14 @@ public class Show extends BaseTimeDeleteEntity {
      * 演出开始时间
      */
     @ApiModelProperty(value = "演出开始时间")
-    @JsonFormat(pattern = "yyyy年MM月dd日 HH时mm分")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
 
     /**
      * 演出结束时间
      */
     @ApiModelProperty(value = "演出结束时间")
-    @JsonFormat(pattern = "yyyy年MM月dd日 HH时mm分")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date stopTime;
 
     /**

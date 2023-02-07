@@ -15,4 +15,8 @@ public class SwiperVo {
     private String showId;
 
     private String swiperImg;
+
+    private String showName;
+
+    private Integer status;
 }

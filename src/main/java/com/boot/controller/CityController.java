@@ -42,7 +42,8 @@ public class CityController {
 
     @PostMapping("addCity")
     public Response<Boolean> addCity(@RequestBody City city) {
-        cityService.save(city);
+        city.setIsDeleted(0);
+        cityService.saveOrUpdate(city);
         return ResponseUtil.success(Boolean.TRUE);
     }
 
